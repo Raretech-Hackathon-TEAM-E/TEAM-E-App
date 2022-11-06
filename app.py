@@ -9,16 +9,15 @@ import re
 
 
 app = Flask(__name__)
-app.secret_key = uuid.uuid4().hex
+# app.secret_key = uuid.uuid4().hex
 # セッションの寿命（30日間）
-app.permanent_session_lifetime = timedelta(days=30)
+# app.permanent_session_lifetime = timedelta(days=30)
 
 
 # サインアップ
-
 @app.route('/signup')
 def signup():
-    return render_template('')
+    return render_template('registration/signup')
 
 @app.route('/signup', methods=['POST'])
 def userSignup():
@@ -50,3 +49,201 @@ def userSignup():
             session['uid'] = UserId
             return redirect('/')
     return redirect('/signup')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#"/"へのアクセス
+@app.route('/')
+def index():
+    '''
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    else:
+        channels = dbConnect.getChannelAll()
+    return render_template('index.html', channels=channels, uid=uid)
+    '''
+    return render_template('index.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
