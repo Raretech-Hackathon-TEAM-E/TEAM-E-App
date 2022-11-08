@@ -9,15 +9,15 @@ import re
 
 
 app = Flask(__name__)
-# app.secret_key = uuid.uuid4().hex
+app.secret_key = uuid.uuid4().hex
 # セッションの寿命（30日間）
-# app.permanent_session_lifetime = timedelta(days=30)
+app.permanent_session_lifetime = timedelta(days=30)
 
 
 # サインアップ
 @app.route('/signup')
 def signup():
-    return render_template('registration/signup')
+    return render_template('registration/signup.html')
 
 @app.route('/signup', methods=['POST'])
 def userSignup():
