@@ -128,7 +128,7 @@ def getChannelByName(channel_name):
 
 
 #チャンネルの追加
-
+'''
 def addChannel(uid, newChannelName, newChannnelDescription):
     try:
         conn = DB.getConnection()
@@ -141,3 +141,4 @@ def addChannel(uid, newChannelName, newChannnelDescription):
         return None
     finally:
         cur.close()
+'''
