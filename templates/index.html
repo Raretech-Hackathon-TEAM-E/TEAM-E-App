@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--ルーティング用に記載-->
+  <body>
+    <p>ルーティング用_index</p>
+    <form action="/signup">
+      <button>サインアップ</button>
+    <a  href="{{ url_for('signup') }}">
+        サインアップ
+    </a>
+    </form>
+    <form action="/login">
+      <button>ログイン</button>
+    <a  href="{{ url_for('login') }}">
+        ログイン
+    </a>
+    </form>
+
+  </body>
+</html>
