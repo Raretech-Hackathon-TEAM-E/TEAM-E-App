@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ログイン</title>
+  </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--ルーティング用に記述-->
+  <body>
+    <form method="post">
+      <h1>ログイン</h1>
+      <input type="text" placeholder="Email" name="email" />
+      <input type="password" placeholder="Password" name="password" />
+      <button>ログイン</button>
+      <a class="switch-register-mode" href="{{ url_for('signup') }}">
+        未登録の方はこちらへ?
+      </a>
+    </form>
+
+  </body>
+</html>
+
