@@ -1,3 +1,9 @@
+--試験的にDROP DATABASEを記述--
+
+DROP DATABASE chatapp;
+DROP USER 'testuser'@'localhost';
+
+
 CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'testuser';
 CREATE DATABASE chatapp;
 USE chatapp
