@@ -51,7 +51,31 @@ def userSignup():
     return redirect('/signup')
 
 
+# 【ログイン機能】
 
+@app.route('/login')
+def login():
+    return render_template('registration/login.html')
+
+@app.route('/login', methods=['POST'])
+def userLogin():
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    if email == '' or password == '':
+        flash('空のフォームがあるようです')
+    else:
+        user = dbConnect.getUser(email)
+        if user is None:
+            flash('このユーザーは存在しません')
+        else:
+            hashPassword = hashlib.sha256(password.encode('utf-8')).hexdigest()
+            if hashPassword != user["password"]:
+                flash('パスワードが間違っています！')
+            else:
+                session['uid'] = user["uid"]
+                return redirect('/')
+    return redirect('/login')
 
 
 
