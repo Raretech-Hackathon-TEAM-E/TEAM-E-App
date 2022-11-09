@@ -108,15 +108,12 @@ def userLogin():
 #"/"へのアクセス
 @app.route('/')
 def index():
-    '''
     uid = session.get("uid")
     if uid is None:
         return redirect('/login')
     else:
         channels = dbConnect.getChannelAll()
     return render_template('index.html', channels=channels, uid=uid)
-    '''
-    return render_template('index.html')
 
 
 
