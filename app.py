@@ -79,6 +79,8 @@ def userSignup():
 
 
 
+
+
 #"/"へのアクセス
 @app.route('/')
 def index():
@@ -91,9 +93,6 @@ def index():
     return render_template('index.html', channels=channels, uid=uid)
     '''
     return render_template('index.html')
-
-
-
 
 
 
