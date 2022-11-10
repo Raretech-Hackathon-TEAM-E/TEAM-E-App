@@ -99,15 +99,36 @@ def userLogin():
 
 
 
+# 【メッセージ】
 
+@app.route('/detail/cid')
+def detail(cid):
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    cid = cid
+    channel = dbConnect.getChannelById
+    messages = dbConnect.getMessageAll
 
+    return render_template('detail.html', messages = messages, channel=channel, uid=uid)
 
+@app.route('/message', methods=['POST'])
+def add_message():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    
+    message = request.form.get('message')
+    channel_id = request.form.get('channnel_id')
 
+    if message:
+        dbConnect.createMessage(uid,channel_id,message)
 
+    channel = dbConnect.getChannelById(channel_id)
+    messages = dbConnect.getMessageAll(channel_id)
 
-
-
-
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+   
 
 #"/"へのアクセス
 @app.route('/')
