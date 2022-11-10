@@ -14,7 +14,10 @@ app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 
 
-# サインアップ
+
+# 【サインアップ】
+
+
 @app.route('/signup')
 def signup():
     return render_template('registration/signup.html')
@@ -56,6 +59,7 @@ def userSignup():
 @app.route('/login')
 def login():
     return render_template('registration/login.html')
+
 
 @app.route('/login', methods=['POST'])
 def userLogin():
@@ -267,3 +271,4 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
