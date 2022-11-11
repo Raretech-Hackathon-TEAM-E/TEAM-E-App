@@ -1,7 +1,6 @@
 import pymysql
 from util.DB import DB
 
-
 # サインアップ機能のDB接続操作
 
 class dbConnect:
@@ -12,14 +11,13 @@ class dbConnect:
             sql = "INSERT INTO users (uid, user_name, email, password) VALUES(%s, %s, %s, %s);"
             cur.execute(sql,(user.uid,user.name, user.email, user.password))
             conn.commit()
-
         except Exception as e:
             print(e + 'が発生しています')
-            return
+            return None
         finally:
             cur.close()
 
-# 
+# ユーザーIDの取得
     
     def getUserID(email):
         try:
