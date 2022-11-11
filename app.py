@@ -14,11 +14,13 @@ app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 
 
+
 # 【サインアップ】
+
 
 @app.route('/signup')
 def signup():
-    return render_template('')
+    return render_template('registration/signup.html')
 
 @app.route('/signup', methods=['POST'])
 def userSignup():
@@ -51,11 +53,13 @@ def userSignup():
             return redirect('/')
     return redirect('/signup')
 
+
 # 【ログイン機能】
 
 @app.route('/login')
 def login():
-    return render_template('')
+    return render_template('registration/login.html')
+
 
 @app.route('/login', methods=['POST'])
 def userLogin():
@@ -76,3 +80,195 @@ def userLogin():
                 session['uid'] = user["uid"]
                 return redirect('/')
     return redirect('/login')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#"/"へのアクセス
+@app.route('/')
+def index():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    else:
+        channels = dbConnect.getChannelAll()
+    return render_template('index.html', channels=channels, uid=uid)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>サインアップ</title>
+  </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--ルーティング用に記述-->
+  <body>
+    <form method="post">
+      <h1>サインアップ</h1>
+      <input type="text" placeholder="Name" name="name" />
+      <input type="text" placeholder="Email" name="email" />
+      <input type="password" placeholder="Password" name="password1" />
+      <input
+        type="password"
+        placeholder="Password Confirmation"
+        name="password2"
+      />
+      <button>サインアップ</button>
+      <a href="{{ url_for('login') }}">
+        登録済みの方はこちらへ
+        </a>
+    </form>
+
+
+  </body>
+</html>
+
