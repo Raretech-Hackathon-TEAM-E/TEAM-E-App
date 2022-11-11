@@ -206,3 +206,19 @@ class dbConnect:
             return None
         finally:
             cur.close()
+
+
+# リポスト
+
+    def repostMessage(uid, cid, message, quote_mid, mark):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO messages(uid, cid, message, quote_mid, repost_mark) VALUES(%s, %s, %s, %s, %s);"
+            cur.execute(sql, (uid, cid, message, quote_mid, mark))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()

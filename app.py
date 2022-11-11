@@ -150,6 +150,30 @@ def delete_message():
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
 
+# 【リポスト】
+
+@app.route('/repost', methods=['POST'])
+def repost_message():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('login')
+    message = request.form.get('message')
+    quote_mid = request.form.get('message_id')
+    cid = request.form.get('channnel_id')
+    mark = request.form.get('指定する！')
+
+    if message_id:
+        dbConnect.repostMessage(uid, cid, message, quote_mid, mark)
+    
+    channel = dbConnect.getChannelById(cid)
+    messages = dbConnect.getMessageAll(cid)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+
+
+"""
+cidの変数名を揃える
+"""
 
 
 #"/"へのアクセス
