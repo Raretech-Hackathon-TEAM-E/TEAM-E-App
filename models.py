@@ -19,7 +19,7 @@ class dbConnect:
 
 # ユーザーIDの取得
     
-    def getUserID(email):
+    def getUserId(email):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
@@ -31,8 +31,9 @@ class dbConnect:
             print(e + 'が発生しています')
             return None
         finally:
-            cur.close
+            cur.close()
 
+# ユーザーの取得
 
     def getUser(email):
         try:
@@ -46,7 +47,7 @@ class dbConnect:
             print(e + 'が発生しています')
             return None
         finally:
-            cur.close
+            cur.close()
 
 
 
@@ -185,6 +186,21 @@ class dbConnect:
             cur.exucute(sql, (cid))
             channnel = cur.fetchone()
             return channnel
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+# メッセージ削除
+
+    def deleteMessage(message_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "DELETE FROM messages WHERE mid = %s;"
+            cur.execute(sql, (message_id))
+            conn.commit()
         except Exception as e:
             print(e + 'が発生しています')
             return None

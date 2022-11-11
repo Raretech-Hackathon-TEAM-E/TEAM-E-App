@@ -112,6 +112,8 @@ def detail(cid):
 
     return render_template('detail.html', messages = messages, channel=channel, uid=uid)
 
+# 【メッセージ作成】
+
 @app.route('/message', methods=['POST'])
 def add_message():
     uid = session.get("uid")
@@ -128,7 +130,27 @@ def add_message():
     messages = dbConnect.getMessageAll(channel_id)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-   
+
+# 【メッセージ削除】
+
+@app.route('/delete_messsage', methods=['POST'])
+def delete_message():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('login')
+    
+    message_id = request.form.get('message_id')
+    cid = request.form.get('channel_id')
+
+    if message_id:
+        dbConnect.deleteMessage(message_id)
+    
+    channel = dbConnect.getChannelById(cid)
+    messages = dbConnect.getMessageAll(cid)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+
+
 
 #"/"へのアクセス
 @app.route('/')
