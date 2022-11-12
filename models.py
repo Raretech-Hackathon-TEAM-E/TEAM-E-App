@@ -135,8 +135,8 @@ def getChannelByName(channel_name):
         cur = conn.cursor()
         sql = "SELECT * FROM channels WHERE name=%s;"
         cur.exucute(sql, (channel_name))
-        channnel = cur.fetchone()
-        return channnel
+        channel = cur.fetchone()
+        return channel
     except Exception as e:
         print(e + 'が発生しています')
         return None
