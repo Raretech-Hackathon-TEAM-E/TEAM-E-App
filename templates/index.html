@@ -25,8 +25,23 @@
 
 
 
-<!--ルーティング用に記載-->
+<!--ルーティング用に記載 modal完成後に削除ください-->
   <body>
     <p>ルーティング用_index</p>
+    <form class="modal-body" action="/" method="POST">
+      <input
+        type="text"
+        placeholder="チャンネル名"
+        class="channel-form-input"
+        name="channel-title"
+      />
+      <input
+        type="text"
+        placeholder="チャンネルの説明"
+        class="channel-form-input"
+        name="channel-description"
+      />
+      <button id="add-channel-confirmation-btn">登録</button>
+    </form>
   </body>
 </html>
