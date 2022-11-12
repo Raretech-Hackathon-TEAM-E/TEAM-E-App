@@ -15,7 +15,7 @@ class dbConnect:
 
         except Exception as e:
             print(e + 'が発生しています')
-            return
+            return None
         finally:
             cur.close()
 
@@ -33,7 +33,7 @@ class dbConnect:
             print(e + 'が発生しています')
             return None
         finally:
-            cur.close
+            cur.close()
 
 
     def getUser(email):
@@ -48,9 +48,26 @@ class dbConnect:
             print(e + 'が発生しています')
             return None
         finally:
-            cur.close
+            cur.close()
 
 
+# 全チャンネル名の取得
+
+    def getChannelAll():
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM channels;"
+            cur.execute(sql)
+            channels = cur.fetchall()
+            return channels
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+# チャンネルIDの取得
 
 
 
@@ -128,8 +145,7 @@ def getChannelByName(channel_name):
 
 
 #チャンネルの追加
-'''
-def addChannel(uid, newChannelName, newChannnelDescription):
+def addChannel(uid, newChannelName, newChannelDescription):
     try:
         conn = DB.getConnection()
         cur = conn.cursor()
@@ -141,4 +157,3 @@ def addChannel(uid, newChannelName, newChannnelDescription):
         return None
     finally:
         cur.close()
-'''
