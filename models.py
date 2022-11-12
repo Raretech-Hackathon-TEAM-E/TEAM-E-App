@@ -134,7 +134,7 @@ def getChannelByName(channel_name):
         conn = DB.getConnection()
         cur = conn.cursor()
         sql = "SELECT * FROM channels WHERE name=%s;"
-        cur.exucute(sql, (channel_name))
+        cur.execute(sql, (channel_name))
         channel = cur.fetchone()
         return channel
     except Exception as e:
