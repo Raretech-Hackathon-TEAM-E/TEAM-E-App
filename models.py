@@ -210,12 +210,12 @@ class dbConnect:
 
 # リポスト
 
-    def repostMessage(uid, cid, message, quote_mid, mark):
+    def repostMessage(uid, cid, remessage, quote_mid, mark):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "INSERT INTO messages(uid, cid, message, quote_mid, repost_mark) VALUES(%s, %s, %s, %s, %s);"
-            cur.execute(sql, (uid, cid, message, quote_mid, mark))
+            cur.execute(sql, (uid, cid, remessage, quote_mid, mark))
             conn.commit()
         except Exception as e:
             print(e + 'が発生しています')
