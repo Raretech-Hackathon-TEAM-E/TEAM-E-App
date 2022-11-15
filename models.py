@@ -144,15 +144,15 @@ class dbConnect:
 
 
 #チャンネルの追加
-def addChannel(uid, newChannelName, newChannelDescription):
-    try:
-        conn = DB.getConnection()
-        cur = conn.cursor()
-        sql = "INSERT INTO channels (uid, channel_name, abstract) VALUES (%s, %s, %s);"
-        cur.execute(sql, (uid, newChannelName, newChannelDescription))
-        conn.commit()
-    except Exception as e:
-        print(e + 'が発生しています')
-        return None
-    finally:
-        cur.close()
+    def addChannel(uid, newChannelName, newChannelDescription):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO channels (uid, channel_name, abstract) VALUES (%s, %s, %s);"
+            cur.execute(sql, (uid, newChannelName, newChannelDescription))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
