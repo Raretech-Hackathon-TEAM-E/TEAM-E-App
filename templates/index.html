@@ -25,6 +25,14 @@
 
 
 
+
+
+
+
+
+
+
+
 <!--ルーティング用に記載 modal完成後に削除ください-->
   <body>
     <p>ルーティング用_index</p>
@@ -43,5 +51,9 @@
       />
       <button id="add-channel-confirmation-btn">登録</button>
     </form>
+    <script type="text/javascript">
+      const channels = JSON.parse('{{ channels|tojson }}')
+      const uid = JSON.parse('{{ uid|tojson }}');
+    </script>
   </body>
 </html>
