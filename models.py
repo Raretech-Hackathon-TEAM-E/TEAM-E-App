@@ -132,8 +132,8 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT * FROM channels WHERE name=%s;"
-            cur.exucute(sql, (channel_name))
+            sql = "SELECT * FROM channels WHERE channel_name=%s;"
+            cur.execute(sql, (channel_name))
             channnel = cur.fetchone()
             return channnel
         except Exception as e:
