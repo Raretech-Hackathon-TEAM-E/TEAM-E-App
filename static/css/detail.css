@@ -1,0 +1,76 @@
+body {
+    background-color: #DBFF8F;
+}
+
+
+.main-container {
+}
+
+.chat-box {
+    min-height: 100vh;
+    width: 100%;
+}
+
+#chat-header{
+    background-color: #FCFFF4;
+}
+
+#chatroom-name {
+    font-size: larger;
+  }
+  
+  #chatroom-description {
+    font-size: small;
+  }
+
+#message-area{
+    background-color: #FCFFF4;
+    min-height: 100vh;
+    width: 100%;
+    padding-top: calc(8vh + 10px);
+    padding-right: 20px;
+    padding-bottom: calc(20vh + 10px);
+    padding-left: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.my-messages{
+    display: flex;
+}
+
+.delete-message-btn{
+
+}
+
+.box{
+
+}
+
+.box-right{
+
+}
+
+.box-left{
+
+}
+
+.user-name{
+    font-size: 8px;
+}
+
+.repostbox{
+
+}
+
+.mark{
+
+}
+
+.typing-box{
+
+}
+
