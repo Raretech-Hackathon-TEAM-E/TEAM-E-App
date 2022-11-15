@@ -277,7 +277,7 @@ cidの変数名を揃える
 #"/"へのアクセス
 @app.route('/')
 def index():
-    uid = session.get("uid")
+    uid = session.get('uid')
     if uid is None:
         return redirect('/login')
     else:
@@ -285,7 +285,20 @@ def index():
     return render_template('index.html', channels=channels, uid=uid)
 
 
-
+@app.route('/', methods=['POST'])
+def add_channel():
+    uid = session.get('uid')
+    if uid is None:
+        return redirect('/login')
+    channel_name = request.form.get('channel-title')
+    channel = dbConnect.getChannelByName(channel_name)
+    if channel == None:
+        channel_description = request.form.get('channel-description')
+        dbConnect.addChannel(uid, channel_name, channel_description)
+        return redirect('/')
+    else:
+        error = '既に同じチャンネルが存在しています' 
+        return #error メッセージ用HTMLが必要
 
 
 
