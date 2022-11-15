@@ -259,7 +259,7 @@ def repost_message():
     remessage = request.form.get('re_message')
     quote_mid = request.form.get('message_id')
     cid = request.form.get('channnel_id')
-    mark = request.form.get('指定する！')
+    mark = request.form.get('repost_mark')
 
     if remessage:
         dbConnect.repostMessage(uid, cid, remessage, quote_mid, mark)
