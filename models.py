@@ -129,31 +129,31 @@ class dbConnect:
 
 #チャンネル名の取得
 
-def getChannelByName(channel_name):
-    try:
-        conn = DB.getConnection()
-        cur = conn.cursor()
-        sql = "SELECT * FROM channels WHERE name=%s;"
-        cur.execute(sql, (channel_name))
-        channel = cur.fetchone()
-        return channel
-    except Exception as e:
-        print(e + 'が発生しています')
-        return None
-    finally:
-        cur.close()
+    def getChannelByName(channel_name):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM channels WHERE channel_name=%s;"
+            cur.execute(sql, (channel_name))
+            channel = cur.fetchone()
+            return channel
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 #チャンネルの追加
-def addChannel(uid, newChannelName, newChannelDescription):
-    try:
-        conn = DB.getConnection()
-        cur = conn.cursor()
-        sql = "INSERT INTO channels (uid, channel_name, abstract) VALUES (%s, %s, %s);"
-        cur.execute(sql, (uid, newChannelName, newChannelDescription))
-        conn.commit()
-    except Exception as e:
-        print(e + 'が発生しています')
-        return None
-    finally:
-        cur.close()
+    def addChannel(uid, newChannelName, newChannelDescription):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO channels (uid, channel_name, abstract) VALUES (%s, %s, %s);"
+            cur.execute(sql, (uid, newChannelName, newChannelDescription))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
