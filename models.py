@@ -182,7 +182,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "内部結合と自己結合のSQL文;"
+            sql = "SELECT m1.mid,u.uid, user_name, m1.message, m1.m_add_time, m1.quote_mid, m2.message FROM messages AS m1 INNER JOIN users AS u ON m1.uid = u.uid LEFT JOIN messages AS m2  ON m1.quote_mid = m2.mid WHERE m1.cid = 1;"
             cur.exucute(sql, (cid))
             channnel = cur.fetchone()
             return channnel
