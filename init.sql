@@ -38,4 +38,5 @@ CREATE TABLE messages (
 
 /* ユーザーネーム：test　パスワード：testpass */
 INSERT INTO users(uid, user_name, email, password, u_signup_time) VALUES('7bf934b7-8a22-4bfd-832b-fe68fb29c76f', 'test', 'test@gmail.com', '13d249f2cb4127b40cfa757866850278793f814ded3c587fe5889e889a7a9f6c', '2022-11-08 0:20:20');
-
+/*INSERT INTO channels(id, uid, name, abstract)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8','ぼっち部屋','テストさんの孤独な部屋です');
+INSERT INTO messages(id, uid, cid, message)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', '誰かかまってください、、')
