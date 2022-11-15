@@ -109,6 +109,171 @@ def userLogin():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 【メッセージ】
+
+@app.route('/detail/cid')
+def detail(cid):
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    cid = cid
+    channel = dbConnect.getChannelById
+    messages = dbConnect.getMessageAll
+
+    return render_template('detail.html', messages = messages, channel=channel, uid=uid)
+
+# 【メッセージ作成】
+
+@app.route('/message', methods=['POST'])
+def add_message():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    
+    message = request.form.get('message')
+    channel_id = request.form.get('channnel_id')
+
+    if message:
+        dbConnect.createMessage(uid,channel_id,message)
+
+    channel = dbConnect.getChannelById(channel_id)
+    messages = dbConnect.getMessageAll(channel_id)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+
+# 【メッセージ削除】
+
+@app.route('/delete_messsage', methods=['POST'])
+def delete_message():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('login')
+    
+    message_id = request.form.get('message_id')
+    cid = request.form.get('channel_id')
+
+    if message_id:
+        dbConnect.deleteMessage(message_id)
+    
+    channel = dbConnect.getChannelById(cid)
+    messages = dbConnect.getMessageAll(cid)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+
+# 【リポスト】
+
+@app.route('/repost', methods=['POST'])
+def repost_message():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('login')
+    remessage = request.form.get('re_message')
+    quote_mid = request.form.get('message_id')
+    cid = request.form.get('channnel_id')
+    mark = request.form.get('repost_mark')
+
+    if remessage:
+        dbConnect.repostMessage(uid, cid, remessage, quote_mid, mark)
+    
+    channel = dbConnect.getChannelById(cid)
+    messages = dbConnect.getMessageAll(cid)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+
+"""
+cidの変数名を揃える
+"""
+
+
 #"/"へのアクセス
 @app.route('/')
 def index():
