@@ -1,9 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
+    float: none;
+    position: static;
+    font-family: "Sawarabi Mincho", serif;
+    font-family: "DotGothic16", sans-serif;
+    font-size: 20px;
+    box-sizing: border-box;
     background-color: #DBFF8F;
 }
 
-
 .main-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #FCFFF4;
+    height: 10vh;
+    display: flex;
+    margin: 1em 0 3em 0;
+    position: relative;
+    top: 0;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+#channel-info {
+    position: absolute;
+    top: 0.2em;
+    left: 2em;
+    display: flex;
+    flex-direction: column;
+}
+
+#channel-info-main {
+    display: flex;
+    flex-direction: row;
+}
+
+#chatroom-name {
+    font-size: larger;
+}
+
+#channel-edit{
+    padding-left: 1em;
+}
+  
+#chatroom-description {
+    font-size: small;
+}
+
+#header-menu{
+    position: absolute;
+    top: 0.2em;
+    right: 2em;
+    flex-direction: row;
+}
+
+#user-name{
+
+}
+
+#signout-btn{
+    font-size: small;
 }
 
 .chat-box {
@@ -11,30 +75,19 @@ body {
     width: 100%;
 }
 
-#chat-header{
-    background-color: #FCFFF4;
-}
-
-#chatroom-name {
-    font-size: larger;
-  }
-  
-  #chatroom-description {
-    font-size: small;
-  }
 
 #message-area{
     background-color: #FCFFF4;
     min-height: 100vh;
     width: 100%;
-    padding-top: calc(8vh + 10px);
-    padding-right: 20px;
+    padding-top: calc(5vh + 5px);
+    padding-right: 30px;
     padding-bottom: calc(20vh + 10px);
-    padding-left: 20px;
+    padding-left: 30px;
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* 縦並び */
     gap: 0.6rem;
 }
 
@@ -47,7 +100,7 @@ body {
 }
 
 .box{
-
+    overflow-wrap: break-word;
 }
 
 .box-right{
