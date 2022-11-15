@@ -28,18 +28,31 @@
           <!--メッセージ一覧取得if文-->
           {% if messages|length > 0 %}
             {% for message in messages %}
-              {% message.uid == uid %}
+              {% if message.uid == uid %}
                 <div class="my-messages">
-                  <p class="box box-right">{{ message.message }}</p>
+                  <button id="">Repost</button>
+                    {% include 'modal/リポスト.html' %}
                   <form action="/delete_message" method="post">
                     <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                     <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
                       <!--ゴミ箱アイコン-->
                     </button>
                   </form>
+                 {% if message.repost_message is not none %}
+                   <p class="box box-right "></p>
+
+
+                 {% else %}
+                  <p class="box box-right">{{ message.message }}</p>
+                  
                 </div>
-              {% else %}
-              
+              {% elif %}
+
+                <div class="messages">
+                  <p class="user-name">{{ message.user_name }}</p>
+                  <p class="box box-left">{{ message.message }}</p>
+                </div>
+
         </div>
         <div class="typing-box-wrapper">
           <!--入力フォーム-->
