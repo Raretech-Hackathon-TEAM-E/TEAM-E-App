@@ -41,8 +41,8 @@ body {
 
 #channel-info {
     position: absolute;
-    top: 0.2em;
-    left: 2em;
+    bottom: 0.2em;
+    left: 0.8em;
     display: flex;
     flex-direction: column;
 }
@@ -66,17 +66,19 @@ body {
 
 #header-menu{
     position: absolute;
-    top: 0.2em;
-    right: 2em;
+    bottom: 0.2em;
+    right: 0.5em;
     flex-direction: row;
+    text-align: right;
 }
 
 #user-name{
-
+    right: 0.2em;
 }
 
 #signout-btn{
     font-size: small;
+    right: 0.2em;
 }
 
 /* メッセージエリア */
@@ -167,6 +169,11 @@ body {
     border: none;
     border-radius: 0 0 10px 10px ;
 }
+
+#message-text{
+   padding: 0.8em;
+}
+
 
 .mark{
 
