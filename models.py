@@ -67,6 +67,19 @@ class dbConnect:
             cur.close()
 
 # チャンネルIDの取得
+    def getChannelByID(cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM channels WHERE cid=%s;"
+            cur.execute(sql, (cid))
+            channel = cur.fetchone()
+            return channel
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 
@@ -92,37 +105,19 @@ class dbConnect:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#チャンネルの削除関数
+    def deleteChannel(cid):
+        try: 
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "DELETE FROM channels WHERE cid=%s;"
+            cur.execute(sql, (cid))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 
@@ -156,3 +151,115 @@ class dbConnect:
             return None
         finally:
             cur.close()
+
+
+
+
+# チャンネルIDの取得
+
+    def getChannelById(cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM channels WHERE cid=%s;"
+            cur.execute(sql, (cid))
+            channnel = cur.fetchone()
+            return channnel
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#　ルーティング用に試験的に記述
+# メッセージ取得★★
+
+    def getMessageAll(cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT m1.mid,u.uid, user_name, m1.message, m1.m_add_time, m1.quote_mid, m2.message FROM messages AS m1 INNER JOIN users AS u ON m1.uid = u.uid LEFT JOIN messages AS m2  ON m1.quote_mid = m2.mid WHERE m1.cid = 1;"
+            cur.execute(sql, (cid))
+            channel = cur.fetchone()
+            return channel
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
