@@ -298,7 +298,7 @@ def add_channel():
         return redirect('/')
     else:
         error = '既に同じチャンネルが存在しています' 
-        return #error メッセージ用HTMLが必要
+        return 'error'
 
 
 
