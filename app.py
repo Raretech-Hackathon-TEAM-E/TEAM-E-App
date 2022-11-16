@@ -200,14 +200,14 @@ def userLogin():
 
 # 【メッセージ】
 
-@app.route('/detail/cid')
+@app.route('/detail/<cid>')
 def detail(cid):
     uid = session.get("uid")
     if uid is None:
         return redirect('/login')
     cid = cid
-    channel = dbConnect.getChannelById
-    messages = dbConnect.getMessageAll
+    channel = dbConnect.getChannelById(cid)
+    messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages = messages, channel=channel, uid=uid)
 
