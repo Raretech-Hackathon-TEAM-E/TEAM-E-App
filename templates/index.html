@@ -2,31 +2,38 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <title>E-chat</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../static/css/index.css"
+    />
   </head>
 
+<body>
 
+<div class="main-container">
+  <div class="chat-header">
+   <div class="chat-top">
+   <div id="header-menu">
+    <p id="user-name">I am {{ user_name }}!!
+    </p>
+    <p id="signout-btn">Sign out</p>
+  </div>
+  </div>
+ </div> 
+<div class="channel">
+  <h2>channel</h2>
+  <div class="channel-box">
+   <div class="pagination-container">
+    <p id="prev"><</p>
+    <ul class="pagination"></ul>
+    <p id="next">></p>
+   </div>
+  </div>
+</div>
 
+</body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--ルーティング用に記載-->
-  <body>
-    <p>ルーティング用_index</p>
-  </body>
-</html>
+  </html>
