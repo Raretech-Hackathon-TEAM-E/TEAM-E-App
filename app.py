@@ -278,11 +278,12 @@ cidの変数名を揃える
 @app.route('/')
 def index():
     uid = session.get('uid')
+    user_name = session.get('user_name')
     if uid is None:
         return redirect('/login')
     else:
         channels = dbConnect.getChannelAll()
-    return render_template('index.html', channels=channels, uid=uid)
+    return render_template('index.html', channels=channels, uid=uid, user_name=user_name)
 
 
 @app.route('/', methods=['POST'])
