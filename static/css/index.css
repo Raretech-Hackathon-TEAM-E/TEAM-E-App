@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    float: none;
+    position: static;
+    font-family: "Sawarabi Mincho", serif;
+    font-family: "DotGothic16", sans-serif;
+    font-size: 20px;
+    box-sizing: border-box;
+    background-color: #DBFF8F;
+}
+
+.main-container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.chat-header {
+    background-color: #DBFF8F;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    z-index: 999;
+}
+
+.chat-top {
+    background-color: #FCFFF4;
+    height: 10vh;
+    display: flex;
+    position: relative;
+    margin: 1em 0 3em 0;
+    flex-direction: row;
+}
+
+
+#header-menu{
+    position: absolute;
+    bottom: 0.2em;
+    right: 0.5em;
+    flex-direction: row;
+    text-align: right;
+}
+
+#user-name{
+    right: 0.2em;
+}
+
+#signout-btn{
+    font-size: small;
+    right: 0.2em;
+}
+
+/* チャンネル一覧 */
+
+
+
+h1 {
+    font-style: normal;
+    font-size: 30px;
+    color: black;
+}
