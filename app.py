@@ -208,7 +208,7 @@ def detail(cid):
     cid = cid
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
-
+    
     return render_template('detail.html', messages = messages, channel=channel, uid=uid)
 
 # 【メッセージ作成】
