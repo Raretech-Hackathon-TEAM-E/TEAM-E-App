@@ -58,8 +58,8 @@
             {% for c in channels %}
             <li>
             
-              <a href="{{ url_for('detail', cid=cid) }}">{{ c }}</a>
-              <input type="hidden" name="channel.id" value="{{did}}">
+            <a  href="{{ url_for('detail', cid=cid) }}">{{ c }}</a>
+              <input type="hidden" name="cid">
             </li>
             {% endfor %}
           </ul>
@@ -76,7 +76,9 @@
           <p id="next">></p>
         </div>
         <ul class="channel-box"></ul>
--->    
+ value="{{channel_name}}
+
+      -->    
        
 
 
