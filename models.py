@@ -129,8 +129,8 @@ class dbConnect:
             cur = conn.cursor()
             sql = "SELECT * FROM channels WHERE channel_name=%s;"
             cur.execute(sql, (channel_name))
-            channnel = cur.fetchone()
-            return channnel
+            channel = cur.fetchone()
+            return channel
         except Exception as e:
             print(e + 'が発生しています')
             return None
@@ -163,8 +163,8 @@ class dbConnect:
             cur = conn.cursor()
             sql = "SELECT * FROM channels WHERE cid=%s;"
             cur.execute(sql, (cid))
-            channnel = cur.fetchone()
-            return channnel
+            channel = cur.fetchone()
+            return channel
         except Exception as e:
             print(e + 'が発生しています')
             return None
