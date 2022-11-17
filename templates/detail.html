@@ -46,14 +46,16 @@
             {% for message in messages %}
               {% if message.uid == uid %}-->
                 <div class="my-messages">
-                  <button id="">Repost</button>
+                  <div id="#button">
+                  <button id="repost-button">Repost</button>
                     {% include 'modal/リポスト.html' %}
                   <form action="/delete_message" method="post">
                     <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                    <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
-                      <!--ゴミ箱アイコン-->
+                    <button id="delete-message-btn" name="message_id" value="{{ message.mid }}">
+                      delete<!--ゴミ箱アイコン-->
                     </button>
                   </form>
+                  </div>
                  {% if message.repost_message is not none and message.repost_mark is not none%}
                   <div class="box box-right ">
                     <p id="message-text">{{ message.message }}</p>
