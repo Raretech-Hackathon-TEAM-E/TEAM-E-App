@@ -50,6 +50,36 @@ class dbConnect:
             cur.close()
 
 
+# 全チャンネル名の取得
+
+    def getChannelAll():
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM channels;"
+            cur.execute(sql)
+            channels = cur.fetchall()
+            return channels
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+# チャンネルIDの取得
+    def getChannelByID(cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM channels WHERE cid=%s;"
+            cur.execute(sql, (cid))
+            channel = cur.fetchone()
+            return channel
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 
@@ -75,37 +105,19 @@ class dbConnect:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#チャンネルの削除関数
+    def deleteChannel(cid):
+        try: 
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "DELETE FROM channels WHERE cid=%s;"
+            cur.execute(sql, (cid))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 
@@ -115,10 +127,10 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT * FROM channels WHERE name=%s;"
-            cur.exucute(sql, (channel_name))
-            channnel = cur.fetchone()
-            return channnel
+            sql = "SELECT * FROM channels WHERE channel_name=%s;"
+            cur.execute(sql, (channel_name))
+            channel = cur.fetchone()
+            return channel
         except Exception as e:
             print(e + 'が発生しています')
             return None
@@ -127,7 +139,6 @@ class dbConnect:
 
 
 #チャンネルの追加
-
     def addChannel(uid, newChannelName, newChannelDescription):
         try:
             conn = DB.getConnection()
@@ -143,6 +154,7 @@ class dbConnect:
 
 
 
+
 # チャンネルIDの取得
 
     def getChannelById(cid):
@@ -150,24 +162,9 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "SELECT * FROM channels WHERE cid=%s;"
-            cur.exucute(sql, (cid))
-            channnel = cur.fetchone()
-            return channnel
-        except Exception as e:
-            print(e + 'が発生しています')
-            return None
-        finally:
-            cur.close()
-
-# メッセージ作成
-
-    def createMessage(uid, cid, message):
-        try:
-            conn = DB.getConnection()
-            cur = conn.cursor()
-            sql = "INSERT INTO messages(uid, cid, message) VALUES(%s, %s, %s)"
-            cur.execute(sql, (uid, cid, message))
-            conn.commit()
+            cur.execute(sql, (cid))
+            channel = cur.fetchone()
+            return channel
         except Exception as e:
             print(e + 'が発生しています')
             return None
@@ -176,6 +173,63 @@ class dbConnect:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#　ルーティング用に試験的に記述
 # メッセージ取得★★
 
     def getMessageAll(cid):
@@ -183,24 +237,9 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "SELECT m1.mid,u.uid, user_name, m1.message, m1.m_add_time, m1.quote_mid, m2.message FROM messages AS m1 INNER JOIN users AS u ON m1.uid = u.uid LEFT JOIN messages AS m2  ON m1.quote_mid = m2.mid WHERE m1.cid = 1;"
-            cur.exucute(sql, (cid))
-            channnel = cur.fetchone()
-            return channnel
-        except Exception as e:
-            print(e + 'が発生しています')
-            return None
-        finally:
-            cur.close()
-
-# メッセージ削除
-
-    def deleteMessage(message_id):
-        try:
-            conn = DB.getConnection()
-            cur = conn.cursor()
-            sql = "DELETE FROM messages WHERE mid = %s;"
-            cur.execute(sql, (message_id))
-            conn.commit()
+            cur.execute(sql, (cid))
+            channel = cur.fetchone()
+            return channel
         except Exception as e:
             print(e + 'が発生しています')
             return None
@@ -208,17 +247,19 @@ class dbConnect:
             cur.close()
 
 
-# リポスト
 
-    def repostMessage(uid, cid, remessage, quote_mid, mark):
-        try:
-            conn = DB.getConnection()
-            cur = conn.cursor()
-            sql = "INSERT INTO messages(uid, cid, message, quote_mid, repost_mark) VALUES(%s, %s, %s, %s, %s);"
-            cur.execute(sql, (uid, cid, remessage, quote_mid, mark))
-            conn.commit()
-        except Exception as e:
-            print(e + 'が発生しています')
-            return None
-        finally:
-            cur.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
