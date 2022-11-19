@@ -7,19 +7,17 @@
         <meta name="description" content="" />
         <link
             rel="stylesheet"
-            href="../../static/css/modal.css"
             href="../../static/css/repost.css"
         />
  </head>
  <body>
  <div id="repost-modal" class="modal">
     <div class="modal-content">
-      <div class="modal-header">
+      
       <span class="modalClose" id="repost-page-close-btn">×</span>
-      </div>
+      
       <div id="repost-message-modal" class="container">
       <div class="modal-content">
-      
         <div class="quote-message items">
             <p>引用メッセージがここに入る。引用メッセージがここに入る。<br>
             引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
@@ -29,6 +27,7 @@
             引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
             引用メッセージがここに入る。</p>
         </div>
+       <form class="modal-body" action="/" method="POST">
         <div class="repost-message items">
             <textarea class="repost-message-area"
             name="repost-massage" 
@@ -40,6 +39,7 @@
             Repost
         </button>
         </div>
+        </form>
       </div>
       </div>
     </div>
