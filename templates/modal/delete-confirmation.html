@@ -1,22 +1,28 @@
+<!DOCTYPE html>
+<html>
+ <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <title></title>
+        <meta name="description" content="" />
+        <link
+            rel="stylesheet"
+            href="../../static/css/modal.css"
+        />
+ </head>
+ <body>
 <div id="delete-channel-modal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h5>Are you sure to delete this channel?</h5>
-        <!--画像を使う場合はここにパスを設定
-        <img
-          src="{{ url_for('static',filename='img/cat-on-bar.gif') }}"
-          class="modal-gif"
-        />
-        -->
         <span class="modalClose" id="delete-page-close-btn">×</span>
       </div>
       <div class="modal-body">
-        <!--<p>削除ボタンを押すとチャンネルが消えます</p>
-        <p>本当によろしいですか？</p>
-        -->
+        <p>Are you shure  to delete this channel?</p>        
         <a id="delete-confirm-link">
           <button id="delete-channel-confirmation-btn">Delete...</button>
         </a>
       </div>
     </div>
   </div>
+  </body>
+</html>
