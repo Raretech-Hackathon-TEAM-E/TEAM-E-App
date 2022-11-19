@@ -248,7 +248,7 @@ def delete_message():
     messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-
+''' 元のリポストルーティング。試験用は下に記述
 # 【リポスト】
 
 @app.route('/repost', methods=['POST'])
@@ -258,7 +258,7 @@ def repost_message():
         return redirect('login')
     remessage = request.form.get('re_message')
     quote_mid = request.form.get('message_id')
-    cid = request.form.get('channnel_id')
+    cid = request.form.get('channel_id')
     mark = request.form.get('repost_mark')
 
     if remessage:
@@ -268,7 +268,7 @@ def repost_message():
     messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-
+'''
 """
 cidの変数名を揃える
 """
@@ -326,10 +326,29 @@ def delete_channel(cid):
 
 
 
+# 【リポスト】試験用に記述
 
+@app.route('/repost', methods=['POST'])
+def repost_message():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('login')
+    remessage = request.form.get('re_message')
+#    quote_mid = request.form.get('message_id')
+    cid = request.form.get('channel_id')
+#    mark = request.form.get('repost_mark')  
 
+    repost_mark = request.form.get('repost_mark')
+#    return repost_mark
+    if repost_mark == "1":
+        return 'OK'
+    else:
+        return 'No'
 
+#    channel = dbConnect.getChannelById(cid)
+#   messages = dbConnect.getMessageAll(cid)
 
+#    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
 
 
 
@@ -453,7 +472,11 @@ def delete_channel(cid):
 
 
 
-
+# ログアウト
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/login')
 
 
 
