@@ -50,6 +50,7 @@
                   <p class="repostbox"></p>
                  {% else %}
                  <p class="box box-right">{{ message.message }}</p>  
+                 {% endif %}
                 </div>
                 <div class="messages">
               {% elif message.repost_message is not none and message.repost_mark is not none%}
