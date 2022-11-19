@@ -59,7 +59,7 @@
             <li>
             
             <a  href="{{ url_for('detail', cid=c.cid) }}">{{ c }}</a>
-              <input type="hidden" name="cid">
+              <input type="hidden" name="cid" value="{{c.cid}}">
             </li>
             {% endfor %}
           </ul>

@@ -220,7 +220,7 @@ def add_message():
         return redirect('/login')
     
     message = request.form.get('message')
-    channel_id = request.form.get('channnel_id')
+    channel_id = request.form.get('channel_id')
 
     if message:
         dbConnect.createMessage(uid,channel_id,message)
