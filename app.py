@@ -221,7 +221,7 @@ def add_message():
     
     message = request.form.get('message')
     channel_id = request.form.get('channel_id')
-
+    
     if message:
         dbConnect.createMessage(uid,channel_id,message)
 
@@ -232,7 +232,7 @@ def add_message():
 
 # 【メッセージ削除】
 
-@app.route('/delete_messsage', methods=['POST'])
+@app.route('/delete_message', methods=['POST'])
 def delete_message():
     uid = session.get("uid")
     if uid is None:
@@ -240,7 +240,7 @@ def delete_message():
     
     message_id = request.form.get('message_id')
     cid = request.form.get('channel_id')
-
+    
     if message_id:
         dbConnect.deleteMessage(message_id)
     
@@ -248,7 +248,7 @@ def delete_message():
     messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-''' 元のリポストルーティング。試験用は下に記述
+'''元のリポストルーティング。試験用は下に記述
 # 【リポスト】
 
 @app.route('/repost', methods=['POST'])
@@ -325,7 +325,7 @@ def delete_channel(cid):
 
 
 
-
+'''
 # 【リポスト】試験用に記述
 
 @app.route('/repost', methods=['POST'])
@@ -349,11 +349,29 @@ def repost_message():
 #   messages = dbConnect.getMessageAll(cid)
 
 #    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+'''
 
 
 
+# 【リポスト】
 
+@app.route('/repost', methods=['POST'])
+def repost_message():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('login')
+    remessage = request.form.get('re_message')
+    quote_mid = request.form.get('message_id')
+    cid = request.form.get('channnel_id')
+#    mark = request.form.get('repost_mark')
 
+    if remessage:
+        dbConnect.repostMessage(uid, cid, remessage, quote_mid)#, mark)
+    
+    channel = dbConnect.getChannelById(cid)
+    messages = dbConnect.getMessageAll(cid)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
 
 
 
