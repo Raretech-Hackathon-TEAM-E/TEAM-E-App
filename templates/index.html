@@ -58,7 +58,7 @@
             {% for channel in channels %}
             <li>
             
-            <a  href="{{ url_for('detail', cid=channel.cid) }}">{{ channel }}</a>
+            <a  href="{{ url_for('detail', cid=channel.cid) }}">{{ channel.channel_name }}</a>
               <input type="hidden" name="cid" value="{{channel.cid}}">
             </li>
             <form action="/delete_channel">

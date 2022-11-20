@@ -425,13 +425,13 @@ def repost_message():
     uid = session.get("uid")
     if uid is None:
         return redirect('login')
-    remessage = request.form.get('re_message')
+    remessage = request.form.get('re_massage')
     quote_mid = request.form.get('message_id')
-    cid = request.form.get('channnel_id')
-#    mark = request.form.get('repost_mark')
+    cid = request.form.get('channel_id')
+    mark = request.form.get('repost_mark')
 
     if remessage:
-        dbConnect.repostMessage(uid, cid, remessage, quote_mid)#, mark)
+        dbConnect.repostMessage(uid, cid, remessage, quote_mid, mark)
     
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)

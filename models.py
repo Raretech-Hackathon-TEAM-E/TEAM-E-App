@@ -261,17 +261,17 @@ class dbConnect:
 # メッセージ作成
 
     def createMessage(uid, channel_id, message):
-            try:
-                conn = DB.getConnection()
-                cur = conn.cursor()
-                sql = "INSERT INTO messages(uid, cid, message) VALUES(%s, %s, %s);"
-                cur.execute(sql, (uid, channel_id, message))
-                conn.commit()
-            except Exception as e:
-                print(e + 'が発生しています')
-                return None
-            finally:
-                cur.close()
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO messages(uid, cid, message) VALUES(%s, %s, %s);"
+            cur.execute(sql, (uid, channel_id, message))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 
@@ -282,7 +282,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO messages(uid, cid, message, quote_mid, repost_mark) VALUES(%s, %s, %s, %s, %s);"
+            sql = "INSERT INTO messages(uid, cid, message, quote_mid, repostmark) VALUES(%s, %s, %s, %s, %s);"
             cur.execute(sql, (uid, cid, remessage, quote_mid, mark))
             conn.commit()
         except Exception as e:

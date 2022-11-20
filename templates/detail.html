@@ -47,6 +47,7 @@
                   <p class="mark"></p>
                  {% elif message.repost_message is not none %}
                   <p class="box box-right ">{{ message.message }}</p>
+                  <p class="box box-right ">{{ message.repost_message }}</p>
                   <p class="repostbox"></p>
                  {% else %}
                  <p class="box box-right">{{ message.message }}</p>  
