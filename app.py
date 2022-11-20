@@ -302,7 +302,7 @@ def add_channel():
 
 
 
-#試しに作成　後ほど整えること
+#チャンネル削除
 @app.route('/delete/<cid>')
 def delete_channel(cid):
     uid = session.get("uid")
@@ -318,6 +318,70 @@ def delete_channel(cid):
         dbConnect.deleteChannel(cid)
         channels = dbConnect.getChannelAll()
         return render_template('index.html', channels=channels, uid=uid)
+
+
+#チャンネル編集
+@app.route('/update_channel', methods=['POST'])
+def update_channel():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+
+    cid = request.form.get('cid')
+    channel_name = request.form.get('channel-title')
+    channel_description = request.form.get('channel-description')
+
+    dbConnect.updateChannel(uid, channel_name, channel_description, cid)
+    channel = dbConnect.getChannelByID(cid)
+    messages = dbConnect.getMessageAll(cid)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

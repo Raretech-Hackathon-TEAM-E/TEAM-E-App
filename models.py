@@ -173,9 +173,20 @@ class dbConnect:
 
 
 
+# チャンネルの編集
 
-
-
+    def updateChannel(uid, newChannelName, newChannelDescription, cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "UPDATE channels SET uid=%s, channel_name=%s, abstract=%s WHERE cid=%s;"
+            cur.execute(sql, (uid, newChannelName, newChannelDescription, cid))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 
