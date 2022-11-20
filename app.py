@@ -308,15 +308,16 @@ def delete_channel(cid):
     uid = session.get("uid")
     if uid is None:
         return redirect('/login')
+    cid = cid
+    channel = dbConnect.getChannelById(cid)
+
+    if channel["uid"] != uid:
+        flash('チャンネルは作成者のみ削除可能です')
+        return redirect ('/')
     else:
-        channel = dbConnect.getChannelById(cid)
-        if channel["uid"] != uid:
-            flash('チャンネルは作成者のみ削除可能です')
-            return redirect ('/')
-        else:
-            dbConnect.deleteChannel(cid)
-            channels = dbConnect.getChannelAll()
-            return render_template('index.html', channels=channels, uid=uid)
+        dbConnect.deleteChannel(cid)
+        channels = dbConnect.getChannelAll()
+        return render_template('index.html', channels=channels, uid=uid)
 
 
 

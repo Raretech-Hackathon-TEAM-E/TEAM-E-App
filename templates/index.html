@@ -55,12 +55,19 @@
           <form action="/detail">
            
           <ul>
-            {% for c in channels %}
+            {% for channel in channels %}
             <li>
             
-            <a  href="{{ url_for('detail', cid=c.cid) }}">{{ c }}</a>
-              <input type="hidden" name="cid" value="{{c.cid}}">
+            <a  href="{{ url_for('detail', cid=channel.cid) }}">{{ channel }}</a>
+              <input type="hidden" name="cid" value="{{channel.cid}}">
             </li>
+            <form action="/delete_channel">
+              <button type="submit" class="delete-channel-btn" >
+                <a  href="{{ url_for('delete_channel', cid=channel.cid) }}">ゴミ箱</a>
+                <input type="hidden" name="cid" value="{{channel.cid}}">
+                <!--ゴミ箱アイコン-->
+              </button>
+            </form>
             {% endfor %}
           </ul>
           
