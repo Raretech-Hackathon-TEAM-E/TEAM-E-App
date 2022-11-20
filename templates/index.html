@@ -65,14 +65,14 @@
               <button type="submit" class="delete-channel-btn" >
                 <a  href="{{ url_for('delete_channel', cid=channel.cid) }}">ゴミ箱</a>
                 <input type="hidden" name="cid" value="{{channel.cid}}">
-                <!--ゴミ箱アイコン-->
+              <!--  ゴミ箱アイコン-->
               </button>
             </form>
             {% endfor %}
           </ul>
           
           </form>
-         
+                 
 
 <!--試験的に記述　後で消します
           <button id="add-channel-btn">チャンネル追加</button>
@@ -86,7 +86,7 @@
  value="{{channel_name}}
 
       -->    
-       
+    
 
 
 
