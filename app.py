@@ -437,7 +437,7 @@ def repost_message():
     messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-
+    
 
 
 

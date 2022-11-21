@@ -1,3 +1,5 @@
+routing_test1
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -7,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href=""
+      href="{{url_for('static',filename='css/detail.css')}}"
     />
   </head>
 
@@ -41,26 +43,26 @@
                       <!--ゴミ箱アイコン-->
                     </button>
                   </form>
-                 {% if message.re_massage is not none and message.repost_mark is not none%}
+                  {% if message.quote_message is not none  and message.repostmark is not none%}
+                  <p class="box box-right ">{{ message.quote_message }}</p>
+                  <p class="box box-right " id="repostmark">{{ message.message }}</p>
+                  {% elif message.quote_message is not none %} 
+                  <p class="box box-right ">{{ message.quote_message }}</p>
                   <p class="box box-right ">{{ message.message }}</p>
-                  <p class="repostbox"></p>
-                  <p class="mark"></p>
-                 {% elif message.re_massage is not none %}
-                  <p class="box box-right ">{{ message.message }}</p>
-                  <p class="box box-right ">{{ message.re_massage }}</p>
-                  <p class="repostbox"></p>
-                 {% else %}
-                 <p class="box box-right">{{ message.message }}</p>  
-                 {% endif %}
+                  {% else %}
+                  <p class="box box-right">{{ message.message }}</p>  
+                  {% endif %}
                 </div>
                 <div class="messages">
-              {% elif message.repost_message is not none and message.repost_mark is not none%}
+              {% elif message.quote_message is not none and message.repostmark is not none%}
                   <p class="user-name">{{ message.user_name }}</p>
+                  <p class="box box-left ">{{ message.quote_message }}</p>
                   <p class="box box-left ">{{ message.message }}</p>
                   <p class="repostbox"></p>
                   <p class="mark"></p>
-              {% elif message.repost_message is not none %}
+              {% elif message.quote_message is not none %}
                   <p class="user-name">{{ message.user_name }}</p>
+                  <p class="box box-left ">{{ message.quote_message }}</p>
                   <p class="box box-left ">{{ message.message }}</p>
                   <p class="repostbox"></p>
               {% else %}
