@@ -173,9 +173,20 @@ class dbConnect:
 
 
 
+# チャンネルの編集
 
-
-
+    def updateChannel(uid, newChannelName, newChannelDescription, cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "UPDATE channels SET uid=%s, channel_name=%s, abstract=%s WHERE cid=%s;"
+            cur.execute(sql, (uid, newChannelName, newChannelDescription, cid))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 
@@ -236,10 +247,26 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m1.mid,u.uid, user_name, m1.message, m1.m_add_time, m1.quote_mid, m2.message FROM messages AS m1 INNER JOIN users AS u ON m1.uid = u.uid LEFT JOIN messages AS m2  ON m1.quote_mid = m2.mid WHERE m1.cid = 1;"
+            sql = "SELECT m1.mid,u.uid, user_name, m1.message, m1.m_add_time, m1.quote_mid, m2.message FROM messages AS m1 INNER JOIN users AS u ON m1.uid = u.uid LEFT JOIN messages AS m2  ON m1.quote_mid = m2.mid WHERE m1.cid = %s;"
             cur.execute(sql, (cid))
-            channel = cur.fetchone()
-            return channel
+            messages = cur.fetchall()
+            return messages
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+
+# メッセージ作成
+
+    def createMessage(uid, channel_id, message):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO messages(uid, cid, message) VALUES(%s, %s, %s);"
+            cur.execute(sql, (uid, channel_id, message))
+            conn.commit()
         except Exception as e:
             print(e + 'が発生しています')
             return None
@@ -249,10 +276,38 @@ class dbConnect:
 
 
 
+# リポスト slackのコード検証
+
+    def repostMessage(uid, cid, remessage, quote_mid, mark):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO messages(uid, cid, message, quote_mid, repostmark) VALUES(%s, %s, %s, %s, %s);"
+            cur.execute(sql, (uid, cid, remessage, quote_mid, mark))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 
 
+# メッセージ削除
+
+    def deleteMessage(message_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "DELETE FROM messages WHERE mid = %s;"
+            cur.execute(sql, (message_id))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
 
 
 

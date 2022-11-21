@@ -25,7 +25,7 @@
           {% if uid == channel.uid %}
           <button id="">Edit</button>
            {% include 'modal/update-channel.html' %}
-          {% endif %}
+          {% endif %}     
         </div>
         <div id="message-area">
           <!--メッセージ一覧取得if文-->
@@ -34,22 +34,24 @@
               {% if message.uid == uid %}
                 <div class="my-messages">
                   <button id="">Repost</button>
-                    {% include 'modal/リポスト.html' %}
+                    {% include 'modal/repost.html' %}
                   <form action="/delete_message" method="post">
                     <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                     <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
                       <!--ゴミ箱アイコン-->
                     </button>
                   </form>
-                 {% if message.repost_message is not none and message.repost_mark is not none%}
+                 {% if message.re_massage is not none and message.repost_mark is not none%}
                   <p class="box box-right ">{{ message.message }}</p>
                   <p class="repostbox"></p>
                   <p class="mark"></p>
-                 {% elif message.repost_message is not none %}
+                 {% elif message.re_massage is not none %}
                   <p class="box box-right ">{{ message.message }}</p>
+                  <p class="box box-right ">{{ message.re_massage }}</p>
                   <p class="repostbox"></p>
                  {% else %}
                  <p class="box box-right">{{ message.message }}</p>  
+                 {% endif %}
                 </div>
                 <div class="messages">
               {% elif message.repost_message is not none and message.repost_mark is not none%}
@@ -68,14 +70,14 @@
               {% endif %}
             {% endfor %}
           {% else %}
-          <p>誰も喋っていません</p>
+            <p>誰も喋っていません</p>
           {% endif %}
         </div>
         <div class="typing-box-wrapper">
           <!--入力フォーム-->
           <form class="typing-box" action="/message" method="POST">
             <textarea name="message" id="message" autofocus></textarea>
-            <input type="hidden" name="channel_id" value="{{ channel.id }}" />
+            <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
             <button type="submit" id="add-message-btn">
               <ion-icon name="paper-plane"></ion-icon>
             </button>
@@ -83,5 +85,9 @@
         </div>
       </div>
     </div>
+    <form action="/" >
+      <button>チャンネル一覧へ</button>
+    </form>
+
   </body>
 </html>
