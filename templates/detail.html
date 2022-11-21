@@ -43,10 +43,12 @@ routing_test1
                       <!--ゴミ箱アイコン-->
                     </button>
                   </form>
-                 
+                  {% if message.quote_message is not none %} 
                   <p class="box box-right ">{{ message.quote_message }}</p>
-                  
-                
+                  <p class="box box-right ">{{ message.message }}</p>
+                  {% else %}
+                  <p class="box box-right">{{ message.message }}</p>  
+                  {% endif %}
                 </div>
                 <div class="messages">
               {% elif message.repost_message is not none and message.repost_mark is not none%}
