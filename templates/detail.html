@@ -1,3 +1,5 @@
+routing_test1
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -41,17 +43,10 @@
                       <!--ゴミ箱アイコン-->
                     </button>
                   </form>
-                 {% if message.re_massage is not none and message.repost_mark is not none%}
-                  <p class="box box-right ">{{ message.message }}</p>
-                  <p class="repostbox"></p>
-                  <p class="mark"></p>
-                 {% elif message.re_massage is not none %}
-                  <p class="box box-right ">{{ message.message }}</p>
-                  <p class="box box-right ">{{ message.re_massage }}</p>
-                  <p class="repostbox"></p>
-                 {% else %}
-                 <p class="box box-right">{{ message.message }}</p>  
-                 {% endif %}
+                 
+                  <p class="box box-right ">{{ message.quote_message }}</p>
+                  
+                
                 </div>
                 <div class="messages">
               {% elif message.repost_message is not none and message.repost_mark is not none%}
