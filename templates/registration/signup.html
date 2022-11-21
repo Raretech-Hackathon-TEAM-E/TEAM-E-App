@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <title>サインアップ</title>
-  </head>
 
+<head>
+  <meta charset="UTF-8" />
+  <title>Eteam.app</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/signup.css')}}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Basic&display=swap">
+</head>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!--ルーティング用に記述-->
-  <body>
-    <form method="post">
-      <h1>サインアップ</h1>
-      <input type="text" placeholder="Name" name="name" />
-      <input type="text" placeholder="Email" name="email" />
-      <input type="password" placeholder="Password" name="password1" />
-      <input
-        type="password"
-        placeholder="Password Confirmation"
-        name="password2"
-      />
-      <button>サインアップ</button>
-      <a href="{{ url_for('login') }}">
-        登録済みの方はこちらへ
-        </a>
+<body>
+  <div class="container">
+    <div class="item"></div>{##空の子要素##}
+    <div class="item"><img src="{{ url_for('static',filename='img/toplogo.png') }}" /></div>
+    <form action="/signup" , method="post">
+      <p class="item"></p>
+      <div class="item box"><input type="text"
+          style="border:none;background-color:#DBFF8F;font-size: 5vh;font-family: Basic;" placeholder="Name"
+          name="name">
+      </div>
+      <p class="item"></p>
+      <div class="item box"><input type="email"
+          style="border:none;background-color:#DBFF8F;;font-size: 5vh;font-family: Basic;" placeholder="E Mail"
+          name="email">
+      </div>
+      <p class="item"></p>
+      <div class="item box"><input type="password"
+          style="border:none;background-color:#DBFF8F;;font-size: 5vh;font-family: Basic;" placeholder="Password"
+          name="password1">
+      </div>
+      <p class="item"></p>
+      <div class="item box"><input type="password"
+          style="border:none;background-color:#DBFF8F;;font-size: 5vh;font-family: Basic;"
+          placeholder="Password(confirm)" name="password2">
+      </div>
+      <p class="item"></p>
+      <p class="item"></p>{##空の子要素##}
+      <div class="item btn"><input type="image" src="{{url_for('static',filename='img/signupbutton.png') }}"></div>
     </form>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <div class="item"><a class="item" href="{{ url_for('login')}}">Have an account</a></div>
+  </div>
+</body>
 
-
-  </body>
 </html>
-
