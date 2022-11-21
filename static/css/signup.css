@@ -1,0 +1,32 @@
+body {
+    background-color: #DBFF8F;
+  }
+  
+  .box {
+    height: 7vh;
+    width: 100vh;
+    font-size: 5vh;
+    border-bottom: solid 1px rgb(90, 150, 100)
+  }
+  
+  .container {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 5vh;
+    font-family: 'Basic', sans-serif;
+  }
+
+  .btn {
+    text-align: center;
+  }
+
+  .flashes {
+    color: red;
+  }
