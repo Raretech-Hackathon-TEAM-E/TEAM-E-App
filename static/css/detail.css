@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    float: none;
+    position: static;
+    font-family: "Sawarabi Mincho", serif;
+    font-family: "DotGothic16", sans-serif;
+    font-size: 20px;
+    box-sizing: border-box;
+    background-color: #DBFF8F;
+}
+
+.main-container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+}
+
+.chat-header {
+    background-color: #DBFF8F;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    z-index: 888;
+}
+
+.chat-top {
+    background-color: #FCFFF4;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    position: fixed;
+    margin: 1em 0 5em 0;
+    flex-direction: row;
+    z-index: 999;
+}
+
+#channel-info {
+    position: absolute;
+    bottom: 0.2em;
+    left: 0.8em;
+    display: flex;
+    flex-direction: column;
+}
+
+#channel-info-main {
+    display: flex;
+    flex-direction: row;
+}
+
+#chatroom-name {
+    font-size: larger;
+}
+
+#channel-edit{
+    padding-left: 1em;
+}
+
+#chatroom-description {
+    font-size: small;
+}
+
+#header-menu{
+    position: absolute;
+    bottom: 0.2em;
+    right: 0.5em;
+    flex-direction: row;
+    text-align: right;
+}
+
+#user-name{
+    right: 0.2em;
+}
+
+#signout-btn{
+    font-size: small;
+    right: 0.2em;
+}
+
+/* メッセージエリア */
+
+.chat-box {
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+#message-area{
+    background-color: #FCFFF4;
+    min-height: 100vh;
+    width: 100%;
+    margin-top: calc(10vh + 3em);
+    padding-top: calc(5vh + 5px);
+    padding-right: 30px;
+    padding-bottom: calc(20vh + 10px);
+    padding-left: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.my-messages{
+    display: flex;
+    flex-direction: column;
+}
+
+
+#button {
+    display: flex;
+    flex-direction: row;
+}
+
+#repost-button{
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 10px;
+    padding: 0.2em 0.2em;
+    width: 6em;
+    color: #FCFFF4;
+    font-size: 0.5em;
+    background-color: #999;
+    border-color: #999;
+    border-radius: 80vh;
+}
+
+
+#delete-message-btn{
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 30px;
+    padding: 0.2em 0.2em;
+    width: 6em;
+    color: #FCFFF4;
+    font-size: 0.5em;
+    background-color: #999;
+    border-color: #999;
+    border-radius: 80vh;
+}
+
+.box{
+    position: relative;
+    width: 40%;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    overflow-wrap: break-word;
+    flex-direction: column;
+}
+
+.box-right{
+    background-color: #444444;
+    color: #FCFFF4;
+    margin-left: auto;
+    margin-right: 10px;
+    border: 2px solid #333;
+  }
+
+.box-left{
+    background-color: #FCFFF4;
+    color: #444444;
+    border: 2px solid #333;
+  }
+
+.message{
+    padding: 0.7em 0 0.4em 1em;
+}
+
+
+.user-name{
+    font-size: 8px;
+}
+
+.box-right-repost{
+    background-color: #999999;
+    color: rgba(252, 255, 244, 0.6);
+    width: auto;
+    margin: 0;
+    z-index: 2;
+    border: none;
+    border-radius: 0 0 10px 10px ;
+}
+
+.box-left-repost{
+    background-color: #999999;
+    opacity: 60%;
+    color: rgba(244, 244, 244, 0.6);
+    width: auto;
+    margin: 0;
+    z-index: 2;
+    border: none;
+    border-radius: 0 0 10px 10px ;
+}
+
+#message-text{
+   padding: 0.8em;
+}
+
+
+.mark{
+
+}
+
+.typing-box-wrapper {
+    position: fixed;
+    bottom: 0;
+    width: calc(100vw - 70px);
+    height: 15vh;
+    background-color: #DBFF8F;
+    background-size: contain;
+    border-top: 2px solid #444444;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    z-index: 999;
+  }
+
+.typing-box{
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    position: relative;
+    background-color: #FCFFF4;
+    border: none;
+    border-radius: 12px;
+}
+
+.typing-box textarea {
+    background-color: transparent;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    width: 80%;
+    height: 80%;
+    padding: 4px 55px 4px 12px;
+    border-radius: 16px;
+    resize: none;
+  }
+  
+  .typing-box textarea:focus {
+    cursor: pointer;
+  }
+
+  #repostmark.box-right{
+    background-color: #f70707;
+    color: #FCFFF4;
+    margin-left: auto;
+    margin-right: 10px;
+    border: 2px solid #333;
+  }
