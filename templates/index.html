@@ -16,7 +16,7 @@
 <div class="main-container">
    <div class="chat-top">
    <div id="header-menu">
-    <p id="user-name">I am {{ user_name }}!!
+    <p id="user-name">I am {{ user_name }}!! <!--ログインユーザー名の表示がNoneになる-->
     </p>
     <a href="{{ url_for('logout') }}">
       <span id="signout-btn">Sign out</span>
@@ -75,7 +75,6 @@
      src="{{url_for('static',filename='js/pagenation.js')}}"
      type="text/javascript"
      ></script>
-
 
 
   </body>

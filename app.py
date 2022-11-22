@@ -279,6 +279,8 @@ cidの変数名を揃える
 def index():
     uid = session.get('uid')
     user_name = session.get('user_name')
+    if user_name in session:
+        return user_name
     if uid is None:
         return redirect('/login')
     else:
