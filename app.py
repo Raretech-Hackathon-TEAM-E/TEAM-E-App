@@ -298,7 +298,7 @@ def add_channel():
         return redirect('/')
     else:
         error = '既に同じチャンネルが存在しています' 
-        return 'error'
+        return render_template('error/error.html', error_message=error)
 
 
 
@@ -538,10 +538,16 @@ def repost_message():
 
 
 
+# 404エラー
+@app.errorhandler(404)
+def show_error404(error):
+    return render_template('error/404.html')
 
 
-
-
+#500エラー
+@app.errorhandler(500)
+def show_error500(error):
+    return render_template('error/500.html')
 
 
 
