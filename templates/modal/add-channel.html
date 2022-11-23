@@ -1,31 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <title></title>
+        <meta name="description" content="" />
+        <link
+            rel="stylesheet"
+            href="../../static/css/modal.css"
+        />
+ </head>
+ <body>
 <div id="add-channel-modal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h5>Add Channel</h5>
-        <!--画像を使う場合はここにパスを設定
-        <img
-          src="{{ url_for('static',filename='img/cat-on-bar.gif') }}"
-          class="modal-gif"
-        />
-        -->
-        <span class="modalClose" id="add-page-close-btn">×</span>
+        <span id="add-page-close-btn">&times</span>
       </div>
-
-      <form class="modal-body" action="/" method="POST">
-        <input
-          type="text"
-          placeholder="Channel Name"
-          class="channel-form-input"
-          name="channel-title"
-        />
-        <input
-          type="text"
-          placeholder="About channel"
-          class="channel-form-input"
-          name="channel-description"
-        />
-        <button id="add-channel-confirmation-btn">Add Channel</button>
-      </form>
-  
+      <div class="modal-container">
+        <form class="modal-body" action="/" method="POST">
+          <input
+            type="text"
+            placeholder="Channel Name"
+            class="channel-form-input"
+            name="channel-title"
+          />
+          <input
+            type="text"
+            placeholder="About channel"
+            class="channel-form-input"
+            name="channel-description"
+          />
+          <button id="add-channel-confirmation-btn">Add Channel</button>
+        </form>
+      </div>
     </div>
   </div>
+  </body>
+</html>

@@ -10,9 +10,7 @@
       href="../static/css/index.css"
     />
   </head>
-
 <body>
-
 <div class="main-container">
    <div class="chat-top">
    <div id="header-menu">
@@ -49,11 +47,10 @@
        </form>
        {% endfor %}
     </ul>
-    </form>  
+    </form>
 
     <button id="add-channel-btn">Add Channel</button>
     {% include 'modal/add-channel.html' %}
-    {% include 'modal/delete-confirmation.html' %}
 
   </div>  
 </div>
@@ -64,13 +61,8 @@
       const uid = JSON.parse('{{ uid|tojson }}');
     </script>
      <script
-     src="{{url_for('static',filename='js/pagenation.js')}}"
+     src="{{url_for('static',filename='js/addmodal.js')}}"
      type="text/javascript"
      ></script>
-     <script
-     src="{{url_for('static',filename='js/modal.js')}}"
-     type="text/javascript"
-     ></script>
-
   </body>
 </html>
