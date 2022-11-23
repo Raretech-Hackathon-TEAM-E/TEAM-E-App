@@ -152,7 +152,7 @@ body {
 .box{
     position: relative;
     width: 40%;
-    border-radius: 10px;
+    border-radius: 6px;
     font-weight: bold;
     font-size: 14px;
     line-height: 1.5;
@@ -191,7 +191,7 @@ body {
     margin: 0;
     z-index: 2;
     border: none;
-    border-radius: 0 0 10px 10px ;
+    border-radius: 0 0 6px 6px ;
 }
 
 .box-left-repost{
@@ -202,18 +202,17 @@ body {
     margin: 0;
     z-index: 2;
     border: none;
-    border-radius: 0 0 10px 10px ;
+    border-radius: 0 0 6px 6px ;
 }
 
 #message-text{
    padding: 0.8em;
 }
 
-/*
-.mark{
-
+#repostmark{
+    border: 5px double #f28fff;
 }
-*/
+
 .typing-box-wrapper {
     position: fixed;
     bottom: 0;
@@ -253,61 +252,4 @@ body {
   
   .typing-box textarea:focus {
     cursor: pointer;
-  }
-
-  #repostmark.box-right{
-    background-color: #f70707;
-    color: #FCFFF4;
-    margin-left: auto;
-    margin-right: 10px;
-    border: 2px solid #333;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  #repostmark.box-left{
-    background-color: #f70707;
-    color: #FCFFF4;
-    margin-left: auto;
-    margin-right: 10px;
-    border: 2px solid #333;
   }
