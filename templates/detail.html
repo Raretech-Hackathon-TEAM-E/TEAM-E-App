@@ -1,5 +1,3 @@
-routing_test1
-
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -18,51 +16,62 @@ routing_test1
       <div class="chat-header">
       <div class="chat-top">
         <!--チャンネルタイトル、if文-->
-        <div id="channel-info">
-          <div id="channel-info-main">
-          <p id="channelroom-name">{{ channel.channel_name }}</p>
+        <div class="channel-info">
+          <div class="channel-info-main">
+          <p class="channelroom-name">{{ channel.channel_name }}</p>
           {% if uid == channel.uid %}
-            <button id='channel-update' class="basic-btn smaller-btn">Edit</button>
+            <button id='channel-update' class="editbutton">Edit</button>
             {% include 'modal/update-channel.html' %}
           {% endif %}
           </div>
           {% if channel.abstract is not none %}
-          <p id="chatroom-description">{{ channel.abstract }}</p>
+          <p class="chatroom-description">{{ channel.abstract }}</p>
           {% endif %}
         </div>
         <div id="header-menu">
           <p id="user-name">
             I am {{ name }}!!
           </p>
-          <p id="signout-btn">Sign out</p>
+        <div class="header-menu-bottom">
+          <p>
+            <form action="/" class="back">
+            <button class="backbutton">▷TOP PAGE</button>
+            </form>
+          </p>
+          <a href="{{ url_for('logout') }}">
+            <span class="signout-btn">Sign out</span>
+          </a>
+        </div>
         </div>
       </div>
       </div>    
       <div class="chat-box">
         
-        <div id="message-area">
+        <div class="message-area">
           <!--メッセージ一覧取得if文-->
         {% if messages|length > 0 %}
           {% for message in messages %}
             {% if message.uid == uid %}
               <div class="my-messages">
+                <div class="message-menu">
                 <button id="repost-button">Repost</button>
-                  {% include 'modal/repost.html' %}
+                {% include 'modal/repost.html' %}
                 <form action="/delete_message" method="post">
                   <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                   <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
-                    <!--ゴミ箱アイコン-->
+                  <img src="{{ url_for('static',filename='img/deleteicon.png') }}" class="deleteicon">
                   </button>
                 </form>
+              </div>
                 {% if message.quote_message is not none  and message.repostmark is not none%}
                 <div class="box box-right" id="repostmark">
                   <p id="message-text">{{ message.message }}</p>
-                  <p class="box box-right box-right-repost">{{ message.quote_message }}</p>
+                  <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
                 </div>
                 {% elif message.quote_message is not none %} 
                 <div class="box box-right ">
                   <p id="message-text">{{ message.message }}</p>
-                  <p class="box box-right box-right-repost">{{ message.quote_message }}</p>
+                  <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
                 </div>
                 {% else %}
                 <p class="box box-right">{{ message.message }}</p>  
@@ -73,13 +82,13 @@ routing_test1
             <p class="user-name">{{ message.user_name }}</p>  
             <div class="box box-left" id="repostmark">
               <p id="message-text">{{ message.message }}</p>
-              <p class="box box-left box-left-repost">{{ message.quote_message }}</p>
+              <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
             </div>
             {% elif message.quote_message is not none %}
             <p class="user-name">{{ message.user_name }}</p>  
             <div class="box box-left ">
               <p id="message-text">{{ message.message }}</p>
-              <p class="box box-left box-left-repost">{{ message.quote_message }}</p>
+              <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
             </div>
             {% else %}
                 <p class="user-name">{{ message.user_name }}</p>  
@@ -99,15 +108,13 @@ routing_test1
           <form class="typing-box" action="/message" method="POST">
             <textarea name="message" id="message" autofocus></textarea>
             <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
-            <button type="submit" id="add-message-btn">
+            <button type="submit" id="add-message-btn">Send
             </button>
           </form>
         </div>
       </div>
     </div>
-    <form action="/" >
-      <button>チャンネル一覧へ</button>
-    </form>
+
 
 
     <script type="text/javascript">

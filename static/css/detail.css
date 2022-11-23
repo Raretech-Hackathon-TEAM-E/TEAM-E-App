@@ -4,20 +4,17 @@
 }
 
 body {
-    float: none;
-    position: static;
-    font-family: "Sawarabi Mincho", serif;
     font-family: "DotGothic16", sans-serif;
     font-size: 20px;
     box-sizing: border-box;
     background-color: #DBFF8F;
+    width: 100vw;
 }
 
 .main-container {
-    width: auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     overflow-x: hidden;
 }
 
@@ -27,8 +24,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 15%;
-    z-index: 888;
+    height: 15vh;
+    z-index: 50;
 }
 
 .chat-top {
@@ -37,12 +34,12 @@ body {
     height: 10vh;
     display: flex;
     position: fixed;
-    margin: 1em 0 5em 0;
+    margin: 1em 0 2em 0;
     flex-direction: row;
-    z-index: 999;
+    z-index: 60;
 }
 
-#channel-info {
+.channel-info {
     position: absolute;
     bottom: 0.2em;
     left: 0.8em;
@@ -50,38 +47,70 @@ body {
     flex-direction: column;
 }
 
-#channel-info-main {
+.channel-info-main {
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
 }
 
-#chatroom-name {
+.channelroom-name {
     font-size: larger;
-}
-
-#channel-update{
-    padding-left: 1em;
-}
-
-#chatroom-description {
-    font-size: small;
-}
-
-#header-menu{
-    position: absolute;
-    bottom: 0.1em;
-    right: 0.5em;
-    flex-direction: row;
-    text-align: right;
-}
-
-#user-name{
-    right: 0.2em;
     font-weight: 550;
 }
 
-#signout-btn{
+.editbutton{
+    border: none;
+    padding: 0.2em;
+    margin-left: 1em;
+    width: 6em;
+    height: 1.5em;
+    align-items: center;
+    font-size: 0.8m;
+}
+
+.backbutton{
+    border: none;
+    padding: 0.2em;
+    margin-left: 1em;
+    width: 10em;
+    height: 1.5em;
+    align-items: center;
+    font-size: 0.8m;
+}
+
+
+.chatroom-description {
     font-size: small;
+}
+
+.header-menu{
+    position: absolute;
+    bottom: 0.1em;
+    right: 0.5em;
+    flex-direction: column;
+    text-align: right;
+    display: flex;
+}
+
+.header-user-name {
+    right: 0.2em;
+    font-weight: 550;
+    font-size: 1.1em;
+}
+
+.header-menu-bottom {
+    display: flex;
+    flex-direction: row;
+    bottom: 0.2em;
+    align-items: flex-end;
+}
+
+.back {
+    font-size: small;
+}
+
+.signout-btn{
+    font-size: 0.8em;
     right: 0.2em;
     color: rgb(135, 135, 135);
     font-weight: 550;
@@ -90,15 +119,19 @@ body {
 
 .chat-box {
     min-height: 100vh;
-    width: 100%;
+    width: 100vw;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
-#message-area{
+.message-area{
     background-color: #FCFFF4;
     min-height: 100vh;
     width: 100%;
-    margin-top: calc(10vh + 3em);
     padding-top: calc(5vh + 5px);
     padding-right: 30px;
     padding-bottom: calc(20vh + 10px);
@@ -117,10 +150,10 @@ body {
     flex-direction: column;
 }
 
-
-#button {
+.message-menu {
     display: flex;
     flex-direction: row;
+
 }
 
 #repost-button{
@@ -130,13 +163,13 @@ body {
     margin-right: 10px;
     padding: 0.2em 0.2em;
     width: 6em;
+    height: 1.5em;
     color: #FCFFF4;
-    font-size: 0.5em;
+    font-size: 0.8em;
     background-color: #999;
     border-color: #999;
     border-radius: 80vh;
 }
-
 
 #delete-message-btn{
     justify-content: center;
@@ -150,6 +183,10 @@ body {
     background-color: #999;
     border-color: #999;
     border-radius: 80vh;
+}
+
+img.deleteicon {
+    height: 1.1em;
 }
 
 .box{
@@ -212,6 +249,11 @@ body {
    padding: 0.8em;
 }
 
+#quotemessage-text {
+    padding: 0.3em;
+    font-size: smaller;
+}
+
 #repostmark{
     border: 5px double #f28fff;
 }
@@ -219,11 +261,11 @@ body {
 .typing-box-wrapper {
     position: fixed;
     bottom: 0;
-    width: calc(100vw - 70px);
+    width: 100vw;
     height: 15vh;
     background-color: #DBFF8F;
     background-size: contain;
-    border-top: 2px solid #444444;
+    border-top: 1px solid #444444;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -255,4 +297,14 @@ body {
   
   .typing-box textarea:focus {
     cursor: pointer;
+  }
+
+  #add-message-btn {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    background-color: #edf0e9;
+    width: 100px;
+    height: 30px;
+    margin-top: 1em;
   }
