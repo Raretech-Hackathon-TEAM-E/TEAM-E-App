@@ -444,12 +444,23 @@ def repost_message():
 
 
 
+# リポストhtmlへのルーティング
+
+@app.route('/repost_open', methods=['POST'])
+def repost_open():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('login')
+
+    quote_mid = request.form.get('message_id')
+    cid = request.form.get('channel_id')
+
+    quote_message = dbConnect.getQuoteMessageByID(quote_mid, cid)
+    channel = dbConnect.getChannelById(cid)
+ #   return 'quote_message.[0]'
 
 
-
-
-
-
+    return render_template('modal/repost.html', uid=uid, quote_message=quote_message, channel=channel)
 
 
 

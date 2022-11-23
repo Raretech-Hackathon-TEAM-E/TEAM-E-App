@@ -48,9 +48,11 @@ routing_test1
             {% for message in messages %}
               {% if message.uid == uid %}
                 <div class="my-messages">
+                  <form action="/repost_open" method="post">
                   <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
                   <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                    {% include 'modal/repost.html' %}
+                  </form>
+                  
                   <form action="/delete_message" method="post">
                     <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                     <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
