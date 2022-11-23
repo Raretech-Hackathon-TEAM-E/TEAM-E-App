@@ -42,60 +42,56 @@
         
         <div id="message-area">
           <!--メッセージ一覧取得if文-->
-          <!--{% if messages|length > 0 %}
-            {% for message in messages %}
-              {% if message.uid == uid %}-->
-                <div class="my-messages">
-                  <div id="#button">
-                  <button id="repost-button">Repost</button>
-                    {% include 'modal/リポスト.html' %}
-                  <form action="/delete_message" method="post">
-                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                    <button id="delete-message-btn" name="message_id" value="{{ message.mid }}">
-                      delete<!--ゴミ箱アイコン-->
-                    </button>
-                  </form>
-                  </div>
-                 {% if message.repost_message is not none and message.repost_mark is not none%}
-                  <div class="box box-right ">
-                    <p id="message-text">{{ message.message }}</p>
-                    <p class="box box-right box-right-repost">repost</p>
-                  </div>
-                  <p class="mark">mark</p>
-                 {% elif message.repost_message is not none %}
-                 <div class="box box-right ">
+          {% if messages|length > 0 %}
+          {% for message in messages %}
+            {% if message.uid == uid %}
+              <div class="my-messages">
+                <button id="repost-button">Repost</button>
+                  {% include 'modal/repost.html' %}
+                <form action="/delete_message" method="post">
+                  <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
+                    <!--ゴミ箱アイコン-->
+                  </button>
+                </form>
+                {% if message.quote_message is not none  and message.repostmark is not none%}
+                <div class="box box-right" id="repostmark">
                   <p id="message-text">{{ message.message }}</p>
-                  <p class="box box-right box-right-repost">repost</p>
+                  <p class="box box-right box-right-repost">{{ message.quote_message }}</p>
                 </div>
-                 {% else %}
-                 <div class="box box-right">
-                  <p id="message-text">{{ message.message }}
-                  </p>
-                </div>  
+                {% elif message.quote_message is not none %} 
+                <div class="box box-right ">
+                  <p id="message-text">{{ message.message }}</p>
+                  <p class="box box-right box-right-repost">{{ message.quote_message }}</p>
                 </div>
-                <div class="messages">
-              {% elif message.repost_message is not none and message.repost_mark is not none%}
-                  <p class="user-name">{{ message.user_name }}</p>
-                  <div class="box box-left ">
-                    <p id="message-text">{{ message.message }}</p>
-                    <p class="box box-left box-left-repost">repost</p>
-                  </div>
-                  <p class="mark">mark</p>
-              {% elif message.repost_message is not none %}
-                  <p class="user-name">{{ message.user_name }}</p>
-                  <div class="box box-left ">
-                    <p id="message-text">{{ message.message }}</p>
-                    <p class="box box-left box-left-repost">repost</p>
-                  </div>
-              {% else %}
-                  <p class="user-name">{{ message.user_name }}</p>
-                  <p class="box box-left">{{ message.message }}</p>  
+                {% else %}
+                <p class="box box-right">{{ message.message }}</p>  
+                {% endif %}
+              </div>
+              <div class="messages">
+            {% elif message.quote_message is not none and message.repostmark is not none%}
+            <p class="user-name">{{ message.user_name }}</p>  
+            <div class="box box-left" id="repostmark">
+              <p id="message-text">{{ message.message }}</p>
+              <p class="box box-left box-left-repost">{{ message.quote_message }}</p>
+            </div>
+            {% elif message.quote_message is not none %}
+            <p class="user-name">{{ message.user_name }}</p>  
+            <div class="box box-left ">
+              <p id="message-text">{{ message.message }}</p>
+              <p class="box box-left box-left-repost">{{ message.quote_message }}</p>
+            </div>
+            {% else %}
+                <p class="user-name">{{ message.user_name }}</p>  
+                <div class="box box-left ">
+                  <p id="message-text">{{ message.message }}</p>
                 </div>
-              {% endif %}
-            {% endfor %}
-          {% else %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
           <p>誰も喋っていません</p>
-          {% endif %}
+        {% endif %}
         </div>
         <div class="typing-box-wrapper">
           <!--入力フォーム-->
