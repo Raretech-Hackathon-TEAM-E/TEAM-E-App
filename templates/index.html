@@ -37,19 +37,19 @@
       <li>
       <a  href="{{ url_for('detail', cid=channel.cid) }}">{{ channel.channel_name }}</a>
       <input type="hidden" name="cid" value="{{channel.cid}}">
-
-      <form action="/delete_channel">
-         <input type="hidden" name="cid" value="{{channel.cid}}">
-         <a href="{{ url_for('delete_channel', cid=channel.cid) }}">
-          <img src="{{ url_for('static',filename='img/deleteicon.png') }}" class="deleteicon delete-channel-btn">
-         </a>
-      </form>
-
       </li>
 
+      <form action="/delete_channel">
+        <button type="hidden" name="cid" value="{{channel.cid}}">
+        <a href="{{ url_for('delete_channel', cid=channel.cid) }}">
+         <img src="{{ url_for('static',filename='img/deleteicon.png') }}" class="deleteicon" id="delete-channel-btn">
+        </a>
+        </button>
+      </form>
        {% endfor %}
     </ul>
     </form>
+
 
     <button id="add-channel-btn">Add Channel</button>
     {% include 'modal/add-channel.html' %}

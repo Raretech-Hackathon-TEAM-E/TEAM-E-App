@@ -10,28 +10,26 @@
             href="../../static/css/modal.css"
         />
  </head>
- <body>
+<body>
 <div id="delete-channel-modal" class="modal">
-    <div class="modal-content">
+  <div class="modal-content">
       <div class="modal-header">
+        <div id="delete-page-close-btn"><p>&times</p></div>
         <h5>Are you sure to delete this channel?</h5>
-        <!--画像を使う場合はここにパスを設定
-        <img
-          src="{{ url_for('static',filename='img/cat-on-bar.gif') }}"
-          class="modal-gif"
-        />
-        -->
-        <span class="modalClose" id="delete-page-close-btn">&times;</span>
       </div>
       <div class="modal-body">
         <!--<p>削除ボタンを押すとチャンネルが消えます</p>
         <p>本当によろしいですか？</p>
         -->
         <a id="delete-confirm-link">
+          <form action="/delete_channel">
+            <input type="hidden" name="cid" value="{{channel.cid}}">
           <button id="delete-channel-confirmation-btn">Delete...</button>
+         </form>
+   
         </a>
       </div>
-    </div>
   </div>
- </body>
+</div>
+</body>
 </html>
