@@ -1,14 +1,21 @@
-<div id="delete-channel-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5>Are you sure to delete this channel?</h5>
-        <!--画像を使う場合はここにパスを設定
-        <img
-          src="{{ url_for('static',filename='img/cat-on-bar.gif') }}"
-          class="modal-gif"
+<!DOCTYPE html>
+<html>
+ <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <title></title>
+        <meta name="description" content="" />
+        <link
+            rel="stylesheet"
+            href="../../static/css/modal.css"
         />
-        -->
-        <span class="modalClose" id="delete-page-close-btn">×</span>
+ </head>
+<body>
+<div id="delete-channel-modal" class="modal">
+  <div class="modal-container">
+      <div class="modal-header">
+        <div id="delete-page-close-btn"><p>&times</p></div>
+        <h5>Are you sure to delete this channel?</h5>
       </div>
       <div class="modal-body">
         <!--<p>削除ボタンを押すとチャンネルが消えます</p>
@@ -16,7 +23,11 @@
         -->
         <a id="delete-confirm-link">
           <button id="delete-channel-confirmation-btn">Delete...</button>
+         </form>
+   
         </a>
       </div>
-    </div>
   </div>
+</div>
+</body>
+</html>
