@@ -22,11 +22,9 @@ routing_test1
           <div id="channel-info-main">
           <p id="channelroom-name">{{ channel.channel_name }}</p>
           {% if uid == channel.uid %}
-          <p id="channel-edit">
-            <a>Edit</a>
-          {% include 'modal/update-channel.html' %}
+            <button id='channel-update' class="basic-btn smaller-btn">Edit</button>
+            {% include 'modal/update-channel.html' %}
           {% endif %}
-          </p>
           </div>
           {% if channel.abstract is not none %}
           <p id="chatroom-description">{{ channel.abstract }}</p>
@@ -110,6 +108,24 @@ routing_test1
     <form action="/" >
       <button>チャンネル一覧へ</button>
     </form>
+
+
+    <script type="text/javascript">
+      const channel = JSON.parse('{{ channel|tojson }}');
+      const uid = JSON.parse('{{ uid|tojson }}');
+    </script>
+    <script
+      src="{{url_for('static',filename='js/scroll-message.js')}}"
+      type="text/javascript"
+    ></script>
+    <script
+      src="{{url_for('static',filename='js/update-channel.js')}}"
+      type="text/javascript"
+    ></script>
+    <script
+      src="{{url_for('static',filename='js/addmodal.js')}}"
+      type="text/javascript"
+    ></script>
 
   </body>
 </html>

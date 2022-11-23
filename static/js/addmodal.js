@@ -23,6 +23,8 @@ function modalOpen(mode) {
     addChannelModal.style.display = "block";
   } else if (mode === "delete") {
     deleteChannelModal.style.display = "block";
+  } else if (mode === "update") {
+    updateChannelModal.style.display = "block";
   }
 }
 
@@ -33,13 +35,17 @@ addPageButtonClose.addEventListener("click", () => {
 deletePageButtonClose.addEventListener("click", () => {
   modalClose("delete");
 });
-
+updatePageButtonClose.addEventListener("click", () => {
+  modalClose("update");
+});
 
 function modalClose(mode) {
   if (mode === "add") {
     addChannelModal.style.display = "none";
   } else if (mode === "delete") {
     deleteChannelModal.style.display = "none";
+  } else if (mode === "update") {
+    updateChannelModal.style.display = "none";
   }
 }
 
