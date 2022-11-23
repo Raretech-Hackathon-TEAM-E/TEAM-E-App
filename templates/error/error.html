@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Eteam.app</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/error.css')}}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Basic&display=swap">
+</head>
+
+<body>
+  <div class="container">
+    <div class="item"><img src="{{ url_for('static',filename='img/duplication.png') }}" /></div>
+      <div class="item" style="margin-bottom: -8vh;">ERROR</div>
+      <div class="item">CHANNEL DUPLICATED</div>
+        <a href="{{ url_for('index') }}">
+          <div class="item">
+            <img src="{{url_for('static',filename='img/returnbutton.png') }}">
+          </div>
+        </a>
+  </div>
+</body>
+
+</html>
