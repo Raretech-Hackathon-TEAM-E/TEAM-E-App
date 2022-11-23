@@ -27,7 +27,7 @@ body {
     height: 10vh;
     display: flex;
     position: relative;
-    margin: 1em 0 3em 0;
+    margin: 1em 0 1em 0;
     flex-direction: row;
     z-index: 2;
 }
@@ -62,14 +62,86 @@ body {
 
 h2 {
     font-family: 'basic';
-    font-weight: 500;
+    font-weight: 600;
 }
 
-.pagination-container {
-    flex-direction: row;
+.channel-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.pagenation {}
+.channel-list {
+    min-height: 50%;
+    min-width: 60vw;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.channel-list li {
+    list-style: none;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    padding-right: 16px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .channel-list li:hover {
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 2px;
+    cursor: pointer;
+  }
+  
+  .channel-list li a {
+    color: rgb(135, 135, 135);
+  }
+  
+  .channel-list li a:hover {
+    color: skyblue;
+  }
+  
+
+  .pagination-container,
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pagination-container {
+    width: 100%;
+    border-bottom: 2px solid rgb(135, 135, 135);
+  }
+  
+  .pagination {
+    padding-left: 0;
+  }
+  
+  .pagination li.colored {
+    background-color: #DBFF8F;
+    color: rgb(105, 162, 235);
+    list-style: none;
+  }
+  
+  #prev,
+  #next,
+  .pagination li {
+    padding: 16px;
+    list-style: none;
+  }
+  
+  #prev:hover,
+  #next:hover {
+    cursor: pointer;
+    background-color: rgb(135, 206, 235, 0.6);
+    color: rgb(225, 225, 225);
+    border-radius: 75px;
+  }
+
 
 #add-channel-btn {
     border: none;
@@ -80,6 +152,26 @@ h2 {
     height: 30px;
 }
 
-img.deleteicon {
-    height: 1.1em;
+.smaller-btn {
+  border: none;
+  border-radius: 5px;
+  background-color: #fafafa;
+  box-shadow: none;
+  width: 7em;
+  height: 1.5em;
+  margin-left: 1em;
+}
+
+.smaller-btn:hover {
+   border: 2px solid skyblue;
+}
+
+.add-channel-btn {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(75, 75, 75, 0.25);
+    background-color: #fafafa;
+    width: 150px;
+    height: 30px;
+    margin: 2em auto;
 }
