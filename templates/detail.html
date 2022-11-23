@@ -9,26 +9,39 @@ routing_test1
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="{{url_for('static',filename='css/detail.css')}}"
+      href="../static/css/detail.css"
     />
   </head>
 
- <header></header>
-
   <body>
-    <div class="main-countainer">
-      <div class="chat-box">
-        <div id="chat-header">
-          <!--チャンネルタイトル、if文-->
+    <div class="main-container">
+      <div class="chat-header">
+      <div class="chat-top">
+        <!--チャンネルタイトル、if文-->
+        <div id="channel-info">
+          <div id="channel-info-main">
           <p id="channelroom-name">{{ channel.channel_name }}</p>
-          {% if channel.abstract is not none %}
-            <p id="chatroom-description">{{ channel.abstract }}</p>
-          {% endif %}
           {% if uid == channel.uid %}
-          <button id="">Edit</button>
-           {% include 'modal/update-channel.html' %}
-          {% endif %}     
+          <p id="channel-edit">
+            <a>Edit</a>
+          {% include 'modal/update-channel.html' %}
+          {% endif %}
+          </p>
+          </div>
+          {% if channel.abstract is not none %}
+          <p id="chatroom-description">{{ channel.abstract }}</p>
+          {% endif %}
         </div>
+        <div id="header-menu">
+          <p id="user-name">
+            I am {{ user_name }}!!
+          </p>
+          <p id="signout-btn">Sign out</p>
+        </div>
+      </div>
+      </div>    
+      <div class="chat-box">
+        
         <div id="message-area">
           <!--メッセージ一覧取得if文-->
           {% if messages|length > 0 %}
@@ -43,38 +56,48 @@ routing_test1
                     <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
                       <!--ゴミ箱アイコン-->
                     </button>
-                  </form>
-                  {% if message.quote_message is not none  and message.repostmark is not none%}
-                  <p class="box box-right ">{{ message.quote_message }}</p>
-                  <p class="box box-right " id="repostmark">{{ message.message }}</p>
-                  {% elif message.quote_message is not none %} 
-                  <p class="box box-right ">{{ message.quote_message }}</p>
-                  <p class="box box-right ">{{ message.message }}</p>
-                  {% else %}
-                  <p class="box box-right">{{ message.message }}</p>  
-                  {% endif %}
+                 
+       
+                </form>
+                {% if message.quote_message is not none  and message.repostmark is not none%}
+                <div class="box box-right" id="repostmark">
+                  <p id="message-text">{{ message.message }}</p>
+                  <p class="box box-right box-right-repost">{{ message.quote_message }}</p>
                 </div>
-                <div class="messages">
-              {% elif message.quote_message is not none and message.repostmark is not none%}
-                  <p class="user-name">{{ message.user_name }}</p>
-                  <p class="box box-left ">{{ message.quote_message }}</p>
-                  <p class="box box-left ">{{ message.message }}</p>
-                  <p class="repostbox"></p>
-                  <p class="mark"></p>
-              {% elif message.quote_message is not none %}
-                  <p class="user-name">{{ message.user_name }}</p>
-                  <p class="box box-left ">{{ message.quote_message }}</p>
-                  <p class="box box-left ">{{ message.message }}</p>
-                  <p class="repostbox"></p>
-              {% else %}
-                  <p class="user-name">{{ message.user_name }}</p>
-                  <p class="box box-left">{{ message.message }}</p>  
+                {% elif message.quote_message is not none %} 
+                <div class="box box-right ">
+                  <p id="message-text">{{ message.message }}</p>
+                  <p class="box box-right box-right-repost">{{ message.quote_message }}</p>
                 </div>
-              {% endif %}
-            {% endfor %}
-          {% else %}
-            <p>誰も喋っていません</p>
-          {% endif %}
+                {% else %}
+                <p class="box box-right">{{ message.message }}</p>  
+                {% endif %}
+              </div>
+              <div class="messages">
+            {% elif message.quote_message is not none and message.repostmark is not none%}
+            <p class="user-name">{{ message.user_name }}</p>  
+            <div class="box box-left" id="repostmark">
+              <p id="message-text">{{ message.message }}</p>
+              <p class="box box-left box-left-repost">{{ message.quote_message }}</p>
+            </div>
+            {% elif message.quote_message is not none %}
+            <p class="user-name">{{ message.user_name }}</p>  
+            <div class="box box-left ">
+              <p id="message-text">{{ message.message }}</p>
+              <p class="box box-left box-left-repost">{{ message.quote_message }}</p>
+            </div>
+            {% else %}
+                <p class="user-name">{{ message.user_name }}</p>  
+                <div class="box box-left ">
+                  <p id="message-text">{{ message.message }}</p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <p>誰も喋っていません</p>
+        {% endif %}
+
         </div>
         <div class="typing-box-wrapper">
           <!--入力フォーム-->
@@ -82,7 +105,6 @@ routing_test1
             <textarea name="message" id="message" autofocus></textarea>
             <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
             <button type="submit" id="add-message-btn">
-              <ion-icon name="paper-plane"></ion-icon>
             </button>
           </form>
         </div>
