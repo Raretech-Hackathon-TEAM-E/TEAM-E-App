@@ -49,7 +49,9 @@ def userSignup():
         else:
             dbConnect.createUser(user)
             UserId = str(uid)
+            UserName = str(name)
             session['uid'] = UserId
+            session['name'] = UserName
             return redirect('/')
     return redirect('/signup')
 
@@ -78,123 +80,9 @@ def userLogin():
                 flash('パスワードが間違っています！')
             else:
                 session['uid'] = user["uid"]
+                session['name'] = user["user_name"]
                 return redirect('/')
     return redirect('/login')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -203,13 +91,14 @@ def userLogin():
 @app.route('/detail/<cid>')
 def detail(cid):
     uid = session.get("uid")
+    name = session.get("name")
     if uid is None:
         return redirect('/login')
     cid = cid
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
     
-    return render_template('detail.html', messages = messages, channel=channel, uid=uid)
+    return render_template('detail.html', messages = messages, channel=channel, uid=uid, name=name)
 
 # 【メッセージ作成】
 
@@ -278,14 +167,14 @@ cidの変数名を揃える
 @app.route('/')
 def index():
     uid = session.get('uid')
-    user_name = session.get('user_name')
-    if user_name in session:
-        return user_name
+    name = session.get('name')
     if uid is None:
         return redirect('/login')
+    elif name in session:
+        return name
     else:
         channels = dbConnect.getChannelAll()
-    return render_template('index.html', channels=channels, uid=uid, user_name=user_name)
+    return render_template('index.html', channels=channels, uid=uid, name=name)
 
 
 @app.route('/', methods=['POST'])
@@ -339,41 +228,6 @@ def update_channel():
     messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
