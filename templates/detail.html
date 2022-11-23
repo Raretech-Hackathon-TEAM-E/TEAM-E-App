@@ -1,3 +1,5 @@
+routing_test1
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -7,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="../static/css/detail.css"
+      href="{{url_for('static',filename='css/detail.css')}}"
     />
   </head>
 
@@ -19,16 +21,16 @@
         <div id="channel-info">
           <div id="channel-info-main">
           <p id="channelroom-name">{{ channel.channel_name }}</p>
-          <!--{% if uid == channel.uid %}-->
+          {% if uid == channel.uid %}
           <p id="channel-edit">
             <a>Edit</a>
-            <!-- {% include 'modal/update-channel.html' %}
-            {% endif %}-->
+          {% include 'modal/update-channel.html' %}
+          {% endif %}
           </p>
           </div>
-          <!--{% if channel.abstract is not none %}-->
+          {% if channel.abstract is not none %}
           <p id="chatroom-description">{{ channel.abstract }}</p>
-          <!--{% endif %}-->
+          {% endif %}
         </div>
         <div id="header-menu">
           <p id="user-name">
@@ -42,7 +44,7 @@
         
         <div id="message-area">
           <!--メッセージ一覧取得if文-->
-          {% if messages|length > 0 %}
+        {% if messages|length > 0 %}
           {% for message in messages %}
             {% if message.uid == uid %}
               <div class="my-messages">
@@ -92,17 +94,22 @@
         {% else %}
           <p>誰も喋っていません</p>
         {% endif %}
+
         </div>
         <div class="typing-box-wrapper">
           <!--入力フォーム-->
           <form class="typing-box" action="/message" method="POST">
             <textarea name="message" id="message" autofocus></textarea>
-            <input type="hidden" name="channel_id" value="{{ channel.id }}" />
+            <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
             <button type="submit" id="add-message-btn">
             </button>
           </form>
         </div>
       </div>
     </div>
+    <form action="/" >
+      <button>チャンネル一覧へ</button>
+    </form>
+
   </body>
 </html>
