@@ -12,24 +12,22 @@
   </head>
 
   <body>
-    <div class="main-container">
       <div class="chat-header">
       <div class="chat-top">
-        <!--チャンネルタイトル、if文-->
         <div class="channel-info">
           <div class="channel-info-main">
           <p class="channelroom-name">{{ channel.channel_name }}</p>
+          {% if channel.abstract is not none %}
+          <p class="chatroom-description">{{ channel.abstract }}</p>
+          {% endif %}
+          </div>
           {% if uid == channel.uid %}
             <button id='channel-update' class="editbutton">Edit</button>
             {% include 'modal/update-channel.html' %}
           {% endif %}
-          </div>
-          {% if channel.abstract is not none %}
-          <p class="chatroom-description">{{ channel.abstract }}</p>
-          {% endif %}
         </div>
-        <div id="header-menu">
-          <p id="user-name">
+        <div class="header-menu">
+          <p class="header-user-name">
             I am {{ name }}!!
           </p>
         <div class="header-menu-bottom">
@@ -113,9 +111,6 @@
           </form>
         </div>
       </div>
-    </div>
-
-
 
     <script type="text/javascript">
       const channel = JSON.parse('{{ channel|tojson }}');

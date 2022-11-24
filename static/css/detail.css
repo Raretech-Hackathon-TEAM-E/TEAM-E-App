@@ -4,14 +4,10 @@
 }
 
 body {
-    font-family: "DotGothic16", sans-serif;
+    font-family: "Basic", sans-serif;
     font-size: 20px;
     box-sizing: border-box;
     background-color: #DBFF8F;
-    width: 100vw;
-}
-
-.main-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -25,32 +21,35 @@ body {
     left: 0;
     width: 100%;
     height: 15vh;
-    z-index: 50;
+    z-index: 5;
 }
 
 .chat-top {
     background-color: #FCFFF4;
     width: 100%;
     height: 10vh;
-    display: flex;
-    position: fixed;
+    position: relative;
     margin: 1em 0 2em 0;
+    display: flex;
     flex-direction: row;
-    z-index: 60;
+    z-index: 6;
 }
 
+/* 左ヘッダー */
 .channel-info {
     position: absolute;
     bottom: 0.2em;
     left: 0.8em;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .channel-info-main {
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: left;
 }
 
 .channelroom-name {
@@ -58,14 +57,35 @@ body {
     font-weight: 550;
 }
 
+
+.chatroom-description {
+    font-size: small;
+}
+
 .editbutton{
-    border: none;
-    padding: 0.2em;
+    border: 4px double #b3b3b3;
+    bottom: 0;
+    padding: 0.1em;
     margin-left: 1em;
-    width: 6em;
-    height: 1.5em;
+    margin-bottom: 0.5em;
+    width: 4em;
+    height: 1.8em;
     align-items: center;
-    font-size: 0.8m;
+    border-radius: 20%;
+    font-size: 1em;
+    background-color:#e9ffb9;
+}
+
+
+/* 右ヘッダー */
+
+.header-menu{
+    position: absolute;
+    bottom: 0.1em;
+    right: 0.5em;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
 }
 
 .backbutton{
@@ -76,20 +96,6 @@ body {
     height: 1.5em;
     align-items: center;
     font-size: 0.8m;
-}
-
-
-.chatroom-description {
-    font-size: small;
-}
-
-.header-menu{
-    position: absolute;
-    bottom: 0.1em;
-    right: 0.5em;
-    flex-direction: column;
-    text-align: right;
-    display: flex;
 }
 
 .header-user-name {
@@ -115,6 +121,8 @@ body {
     color: rgb(135, 135, 135);
     font-weight: 550;
 }
+
+
 /* メッセージエリア */
 
 .chat-box {
@@ -269,7 +277,7 @@ img.deleteicon {
     display: flex;
     align-items: center;
     justify-content: start;
-    z-index: 999;
+    z-index: 2;
   }
 
 .typing-box{
