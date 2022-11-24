@@ -12,11 +12,22 @@ const deleteChannelBtn = document.getElementById("delete-channel-btn");
 // 削除モーダルクローズボタン取得
 const deletePageButtonClose = document.getElementById("delete-page-close-btn");
 
-//update
+//repost
+const repostModal = document.getElementById("repost-message-modal");
+// モーダルを開くボタン取得
+const repostBtn = document.getElementById("repost-button");
+// モーダルクローズボタン取得
+const repostPageButtonClose = document.getElementById("repost-page-close-btn");
+
 
 
 addChannelBtn.addEventListener("click", () => {
   modalOpen("add");
+});
+
+
+repostBtn.addEventListener("click", () => {
+  modalOpen("repost");
 });
 
 function modalOpen(mode) {
@@ -26,6 +37,8 @@ function modalOpen(mode) {
     deleteChannelModal.style.display = "block";
   } else if (mode === "update") {
     updateChannelModal.style.display = "block";
+  } else if (mode === "repost") {
+    repostModal.style.display = "block";
   }
 }
 
@@ -39,6 +52,9 @@ deletePageButtonClose.addEventListener("click", () => {
 updatePageButtonClose.addEventListener("click", () => {
   modalClose("update");
 });
+repostPageButtonClose.addEventListener("click", () => {
+  modalClose("repost")
+});
 
 function modalClose(mode) {
   if (mode === "add") {
@@ -47,6 +63,8 @@ function modalClose(mode) {
     deleteChannelModal.style.display = "none";
   } else if (mode === "update") {
     updateChannelModal.style.display = "none";
+  } else if (mode === "repost") {
+    repostModal.style.display = "none";
   }
 }
 
@@ -73,5 +91,7 @@ function outsideClose(e) {
     addChannelModal.style.display = "none";
   } else if (e.target == deleteChannelModal) {
     deleteChannelModal.style.display = "none";
+  } else if (e.target == repostModal) {
+    repostModal.style.display = "none";
   }
 }

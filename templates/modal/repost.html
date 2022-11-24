@@ -28,25 +28,6 @@
       </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <!--      <div class="repost-message items">　一旦コメントアウトしてます。ルーティング検討後は後述のコードを削除します。
             <textarea class="repost-message-area"
             name="repost-massage" 
@@ -77,13 +58,26 @@
       <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
       <input type="hidden" name="message_id" value="{{ message.mid }}" />
       <input type="checkbox" name="repost_mark" value="1" />
-      <div id="repost-btn" class="items">
-        <button type="submit">
+      <div class="items">
+        <a id="repost-link">
+        <button id="repost-btn" onclick="repostsubmit();">
           Repost
         </button>
+      </a>
       </div>
     </form>
     </div>
   </div>
+
+
+
+  <script
+    src="{{url_for('static',filename='js/addmodal.js')}}"
+    type="text/javascript"
+  ></script>
+  <script
+    src="{{url_for('static',filename='js/repost.js')}}"
+    type="text/javascript"
+  ></script>
 </body>
 </html>

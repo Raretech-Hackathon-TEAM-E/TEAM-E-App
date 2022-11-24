@@ -252,16 +252,6 @@ def update_channel():
 
 
 
-
-
-
-
-
-
-
-
-
-
 '''
 # 【リポスト】試験用に記述
 
@@ -292,14 +282,15 @@ def repost_message():
 
 # 【リポスト】
 
-@app.route('/repost', methods=['POST'])
-def repost_message():
+@app.route('/repost/<mid>', methods=['POST'])
+def repost_message(mid):
     uid = session.get("uid")
     name = session.get('name')
     if uid is None:
         return redirect('login')
     elif name in session:
         return name
+    mid = mid
     remessage = request.form.get('re_massage')
     quote_mid = request.form.get('message_id')
     cid = request.form.get('channel_id')
@@ -314,13 +305,29 @@ def repost_message():
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
     
 
+'''
+#チャンネル削除
+@app.route('/delete/<cid>')
+def delete_channel(cid):
+    uid = session.get("uid")
+    name = session.get('name')
+    if uid is None:
+        return redirect('/login')
+    elif name in session:
+        return name
+    cid = cid
+    channel = dbConnect.getChannelById(cid)
+
+    if channel["uid"] != uid:
+        flash('チャンネルは作成者のみ削除可能です')
+        return redirect ('/')
+    else:
+        dbConnect.deleteChannel(cid)
+        channels = dbConnect.getChannelAll()
+        return render_template('index.html', channels=channels, uid=uid, name=name)
 
 
-
-
-
-
-
+'''
 
 
 
