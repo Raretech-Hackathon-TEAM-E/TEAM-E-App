@@ -28,7 +28,9 @@
 }
 
 
-#add-page-close-btn{
+#add-page-close-btn,
+#delete-page-close-btn,
+#update-page-close-btn{
     position: absolute;
     top: 0.5em;
     right: 1em;
@@ -61,4 +63,5 @@ button{
   background-color: #edf0e9;
   width: 150px;
   height: 30px;
+  font-weight: 500;
 }
