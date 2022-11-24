@@ -6,8 +6,7 @@
 body {
     float: none;
     position: static;
-    font-family: "Sawarabi Mincho", serif;
-    font-family: "DotGothic16", sans-serif;
+    font-family: 'Basic', sans-serif;
     font-size: 20px;
     box-sizing: border-box;
     background-color: #DBFF8F;
@@ -35,7 +34,7 @@ body {
 
 #header-menu{
     position: absolute;
-    bottom: 0.2em;
+    bottom: 0.1em;
     right: 0.5em;
     flex-direction: row;
     text-align: right;
@@ -43,11 +42,18 @@ body {
 
 #user-name{
     right: 0.2em;
+    font-weight: 550;
 }
 
 #signout-btn{
     font-size: small;
     right: 0.2em;
+    color: rgb(135, 135, 135);
+    font-weight: 550;
+}
+
+#signout-btn:hover {
+    color: skyblue;
 }
 
 /* チャンネル一覧 */
@@ -61,7 +67,7 @@ body {
 }
 
 h2 {
-    font-family: 'basic';
+    font-family: 'Basic', sans-serif;
     font-weight: 600;
 }
 
@@ -72,11 +78,12 @@ h2 {
 }
 
 .channel-list {
-    min-height: 50%;
-    min-width: 60vw;
+    min-height: 80%;
+    min-width: 50vw;
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    border-bottom: 2px solid rgb(135, 135, 135);
 }
 
 .channel-list li {
@@ -143,15 +150,6 @@ h2 {
   }
 
 
-#add-channel-btn {
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    background-color: #edf0e9;
-    width: 150px;
-    height: 30px;
-}
-
 .smaller-btn {
   border: none;
   border-radius: 5px;
@@ -162,9 +160,6 @@ h2 {
   margin-left: 1em;
 }
 
-.smaller-btn:hover {
-   border: 2px solid skyblue;
-}
 
 .add-channel-btn {
     border: none;
@@ -174,4 +169,9 @@ h2 {
     width: 150px;
     height: 30px;
     margin: 2em auto;
+}
+
+.smaller-btn:hover,
+.add-channel-btn:hover {
+   border: 2px solid skyblue;
 }
