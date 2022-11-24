@@ -105,8 +105,11 @@ def detail(cid):
 @app.route('/message', methods=['POST'])
 def add_message():
     uid = session.get("uid")
+    name = session.get("name")
     if uid is None:
         return redirect('/login')
+    elif name in session:
+        return name
     
     message = request.form.get('message')
     channel_id = request.form.get('channel_id')
@@ -117,15 +120,18 @@ def add_message():
     channel = dbConnect.getChannelById(channel_id)
     messages = dbConnect.getMessageAll(channel_id)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
 
 # 【メッセージ削除】
 
 @app.route('/delete_message', methods=['POST'])
 def delete_message():
     uid = session.get("uid")
+    name = session.get('name')
     if uid is None:
         return redirect('login')
+    elif name in session:
+        return name
     
     message_id = request.form.get('message_id')
     cid = request.form.get('channel_id')
@@ -136,7 +142,7 @@ def delete_message():
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
 '''元のリポストルーティング。試験用は下に記述
 # 【リポスト】
 
@@ -180,8 +186,11 @@ def index():
 @app.route('/', methods=['POST'])
 def add_channel():
     uid = session.get('uid')
+    name = session.get('name')
     if uid is None:
         return redirect('/login')
+    elif name in session:
+        return name
     channel_name = request.form.get('channel-title')
     channel = dbConnect.getChannelByName(channel_name)
     if channel == None:
@@ -198,8 +207,11 @@ def add_channel():
 @app.route('/delete/<cid>')
 def delete_channel(cid):
     uid = session.get("uid")
+    name = session.get('name')
     if uid is None:
         return redirect('/login')
+    elif name in session:
+        return name
     cid = cid
     channel = dbConnect.getChannelById(cid)
 
@@ -209,15 +221,18 @@ def delete_channel(cid):
     else:
         dbConnect.deleteChannel(cid)
         channels = dbConnect.getChannelAll()
-        return render_template('index.html', channels=channels, uid=uid)
+        return render_template('index.html', channels=channels, uid=uid, name=name)
 
 
 #チャンネル編集
 @app.route('/update_channel', methods=['POST'])
 def update_channel():
     uid = session.get("uid")
+    name = session.get("name")
     if uid is None:
         return redirect('/login')
+    elif name in session:
+        return name
 
     cid = request.form.get('cid')
     channel_name = request.form.get('channel-title')
@@ -227,7 +242,7 @@ def update_channel():
     channel = dbConnect.getChannelByID(cid)
     messages = dbConnect.getMessageAll(cid)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
 
 
 
@@ -280,8 +295,11 @@ def repost_message():
 @app.route('/repost', methods=['POST'])
 def repost_message():
     uid = session.get("uid")
+    name = session.get('name')
     if uid is None:
         return redirect('login')
+    elif name in session:
+        return name
     remessage = request.form.get('re_massage')
     quote_mid = request.form.get('message_id')
     cid = request.form.get('channel_id')
@@ -293,112 +311,8 @@ def repost_message():
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
