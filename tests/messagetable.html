@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>chatroom</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./messagetable.css"
+    />
+  </head>
+
+  <body>
+    <div class="main-container">
+
+      <div class="chat-box">
+        <div id="message-area">
+              <div class="my-messages">
+                <div class="message-menu">
+                    <button id="repost-button" class="repost-button">Repost</button>
+                    <form action="/delete_message" method="post">
+                      <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                      <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
+                    </form>
+                  </div>
+                <div class="box box-right" id="repostmark">
+                  <p id="message-text">{{ message.message }}</p>
+                  <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+                </div>
+                <div class="box box-right ">
+                  <p id="message-text">{{ message.message }}</p>
+                  <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+                </div>
+                <div class="box box-right"><p id="message-text">{{ message.message }}</p>
+                </div>  
+              </div>
+              <div class="messages">
+            <p class="user-name">{{ message.user_name }}</p>  
+            <div class="box box-left" id="repostmark">
+              <p id="message-text">{{ message.message }}</p>
+              <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+            </div>
+            <p class="user-name">{{ message.user_name }}</p>  
+            <div class="box box-left ">
+              <p id="message-text">{{ message.message }}</p>
+              <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+            </div>
+                <p class="user-name">{{ message.user_name }}</p>  
+                <div class="box box-left ">
+                  <p id="message-text">{{ message.message }}</p>
+                </div>
+              </div>
+
+          <p class="no-message">No Message...</p>
+
+        </div>
+
+  </body>
+</html>
