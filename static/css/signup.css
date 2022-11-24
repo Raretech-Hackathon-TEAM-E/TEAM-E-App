@@ -29,4 +29,5 @@ body {
 
   .flashes {
     color: red;
+    list-style: none;
   }

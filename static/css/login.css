@@ -30,4 +30,5 @@ a {
 
 .flashes {
   color: red;
+  list-style: none;
 }
