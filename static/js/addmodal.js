@@ -12,6 +12,7 @@ const deleteChannelBtn = document.getElementById("delete-channel-btn");
 // 削除モーダルクローズボタン取得
 const deletePageButtonClose = document.getElementById("delete-page-close-btn");
 
+//update
 
 
 addChannelBtn.addEventListener("click", () => {

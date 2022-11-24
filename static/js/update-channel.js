@@ -9,6 +9,8 @@ const updateChannel = () => {
     modalOpen("update");
   }
 };
+
+
 updateButton.addEventListener("click", updateChannel);
 
 
