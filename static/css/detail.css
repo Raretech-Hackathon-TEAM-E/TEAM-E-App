@@ -187,6 +187,7 @@ body {
 
 .message-area{
     background-color: #FCFFF4;
+    min-height: 55vh;
     margin-top: calc(10vh + 3em);
     margin-right: 0;
     padding-top: calc(5vh + 5px);
@@ -216,6 +217,7 @@ body {
     display: flex;
     flex-direction: row;
     padding: 0.2em;
+    justify-content: flex-end;
 }
 
 .repost-btn,
@@ -223,11 +225,12 @@ body {
     margin: 0.1em;
     padding: 0.2em;
     width: 6em;
-    color: #FCFFF4;
+    background-color: #e9ffb9;
     font-size: 0.5em;
-    background-color: #999;
-    border-color: #999;
-    border-radius: 80vh;
+    color: rgb(49, 49, 49);
+    border-color: #8b8b8b;
+    border-radius: 3px;
+    font-weight: 600;
 }
 
 .repostmenu {
@@ -259,8 +262,10 @@ body {
   }
 
 
-.user-name{
+.user-name,
+.m-time{
     font-size: 8px;
+    margin: 0.1em;
 }
 
 .box-right-repost{
@@ -270,7 +275,7 @@ body {
     margin: 0;
     z-index: 2;
     border: none;
-    border-radius: 0 0 6px 6px ;
+    border-radius: 6px 6px 0 0 ;
 }
 
 .box-left-repost{
@@ -294,7 +299,7 @@ body {
 }
 
 #repostmark{
-    border: 5px double rgb(91, 168, 255);
+    border: 5px double rgb(255, 0, 144);
     border-radius: 10px;
 }
 

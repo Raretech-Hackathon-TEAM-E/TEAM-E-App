@@ -27,7 +27,6 @@
             
       </div>
 
-
     <form action="/repost" method="POST">
       <div class="repost-message items">
             <textarea class="repost-message-area"
@@ -35,6 +34,8 @@
             placeholder="Repost Message" 
             ></textarea>
       </div>
+
+      <p>Important ?</p>
       <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
       <input type="hidden" name="message_id" value="{{ quote_message.mid }}" />
       <input type="checkbox" name="repost_mark" value="1" />
