@@ -49,57 +49,95 @@
         </div>
       </div>
       </div>    
+
+
       <div class="chat-box">
-        
-        <div class="message-area">
-          <!--メッセージ一覧取得if文-->
+        <div id="message-area">
         {% if messages|length > 0 %}
           {% for message in messages %}
             {% if message.uid == uid %}
-          <div class="my-messages">
-                {% if message.quote_message is not none  and message.repostmark is not none%}
+              <div class="my-messages">
                 <div class="message-menu">
-                  <button id="repost-button">Repost</button>
-                 {% include 'modal/repost.html' %}
-                  <form action="/delete_message" method="post">
-                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                    <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
-                    <img src="{{ url_for('static',filename='img/deleteicon.png') }}" class="deleteicon">
-                    </button>
-                  </form>
+                    <button id="repost-button" class="repost-button">Repost</button>
+                    <form action="/delete_message" method="post">
+                      <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                      <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
+                    </form>
                 </div>
+              {% if message.quote_message is not none  and message.repostmark is not none%}
                 <div class="box box-right" id="repostmark">
                   <p id="message-text">{{ message.message }}</p>
                   <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
                 </div>
-
-                {% elif message.quote_message is not none %}
-                <div class="message-menu"><!--
-                  <button id="repost-button">Repost</button>
-                 {% include 'modal/repost.html' %}-->
-                  <form action="/delete_message" method="post">
-                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                    <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
-                    <img src="{{ url_for('static',filename='img/deleteicon.png') }}" class="deleteicon">
-                    </button>
-                  </form>
+              {% elif message.quote_message is not none %}
+                <div class="box box-right ">
+                  <p id="message-text">{{ message.message }}</p>
+                  <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
                 </div>
+              {% else %}
+                <div class="box box-right"><p id="message-text">{{ message.message }}</p>
+                </div>
+              {% endif %}
+              </div>
+            {% else %}
+              <div class="messages">
+              {% if message.quote_message is not none  and message.repostmark is not none%}
+            <p class="user-name">{{ message.user_name }}</p>  
+            <div class="box box-left" id="repostmark">
+              <p id="message-text">{{ message.message }}</p>
+              <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+            </div>
+             {% elif message.quote_message is not none %}
+            <p class="user-name">{{ message.user_name }}</p>  
+            <div class="box box-left ">
+              <p id="message-text">{{ message.message }}</p>
+              <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+            </div>
+              {% else %}
+            <p class="user-name">{{ message.user_name }}</p>  
+            <div class="box box-left ">
+           <p id="message-text">{{ message.message }}</p>
+            </div>
+              {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <p class="no-message">No Message...</p>
+        {% endif %}
+        </div>
+      <!--
+      <div class="chat-box">
+        
+        <div class="message-area">
+          <!--メッセージ一覧取得if文
+        {% if messages|length > 0 %}
+          {% for message in messages %}
+            {% if message.uid == uid %}
+          <div class="my-messages">
+            <div class="message-menu">
+              <button id="repost-button" class="repost-button">Repost</button>
+             {% include 'modal/repost.html' %}
+              <form action="/delete_message" method="post">
+                <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
+                <img src="{{ url_for('static',filename='img/deleteicon.png') }}" class="deleteicon">
+                </button>
+              </form>
+            </div>
+                {% if message.quote_message is not none  and message.repostmark is not none%}
+                <div class="box box-right" id="repostmark">
+                  <p id="message-text">{{ message.message }}</p>
+                  <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+                </div>
+                {% elif message.quote_message is not none %}
                 <div class="box box-right ">
                   <p id="message-text">{{ message.message }}</p>
                   <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
                 </div>
                 {% else %}
-                <div class="message-menu"><!--
-                  <button id="repost-button">Repost</button>
-                 {% include 'modal/repost.html' %}-->
-                  <form action="/delete_message" method="post">
-                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                    <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">
-                    <img src="{{ url_for('static',filename='img/deleteicon.png') }}" class="deleteicon">
-                    </button>
-                  </form>
+                <div class="box box-right"><p id="message-text">{{ message.message }}</p>
                 </div>
-                <p class="box box-right">{{ message.message }}</p>  
                 {% endif %}
           </div>
           <div class="messages">
@@ -124,11 +162,13 @@
             {% endif %}
           {% endfor %}
         {% else %}
-          <p>誰も喋っていません</p>
+        <p class="no-message">No Message...</p>
         {% endif %}
 
         </div>
       </div>
+
+    -->
         <div class="typing-box-wrapper">
           <!--入力フォーム-->
           <form class="typing-box" action="/message" method="POST">
@@ -160,9 +200,10 @@
     src="{{url_for('static',filename='js/header-menu.js')}}"
     type="text/javascript"
   ></script>
+  <!--
     <script
     src="{{url_for('static',filename='js/repost.js')}}"
     type="text/javascript"
-  ></script>
+  ></script> -->
 </body>
 </html>

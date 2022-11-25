@@ -282,15 +282,14 @@ def repost_message():
 
 # 【リポスト】
 
-@app.route('/repost/<mid>', methods=['POST'])
-def repost_message(mid):
+@app.route('/repost/', methods=['POST'])
+def repost_message():
     uid = session.get("uid")
     name = session.get('name')
     if uid is None:
         return redirect('login')
     elif name in session:
         return name
-    mid = mid
     remessage = request.form.get('re_massage')
     quote_mid = request.form.get('message_id')
     cid = request.form.get('channel_id')

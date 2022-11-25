@@ -26,6 +26,14 @@ addChannelBtn.addEventListener("click", () => {
 });
 
 
+const repostMessage = () => {
+  if (uid !== message.uid) {
+    return;
+  } else {
+    modalOpen("repost");
+  }
+};
+
 repostBtn.addEventListener("click", () => {
   modalOpen("repost");
 });
