@@ -14,21 +14,22 @@
   
   <div id="repost-message-modal" class="modal">
     <div class="modal-content">
-      <div class="modal-header">
-        <button class="modalClose" id="repost-page-close-btn">&times;</button>
-      </div>
+      <form action="/repost" method="POST">
+        <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
+        <div>
+          <button class="modalClose" id="repost-page-close-btn">back</button>
+        </div>
+      </form>
       
       <div class="quote-message items">
-        <p class="quote-message items">{{ quote_message.quote_message }}</p>
+        <p class="quote-message items">{{ quote_message.message }}</p>
         
-            <p>引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            </p>
+            
       </div>
 
 
 
-
+      
 
 
 
@@ -74,7 +75,7 @@
             ></textarea>
       </div>
       <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
-      <input type="hidden" name="message_id" value="{{ quote_mid }}" />
+      <input type="hidden" name="message_id" value="{{ quote_message.mid }}" />
       <input type="checkbox" name="repost_mark" value="1" />
       <div id="repost-btn" class="items">
         <button type="submit">

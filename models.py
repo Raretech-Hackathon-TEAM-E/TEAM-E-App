@@ -315,12 +315,12 @@ class dbConnect:
 #　ルーティング用に試験的に記述
 # quoteメッセージ取得
 
-    def getQuoteMessageByID(quote_mid, cid):
+    def getQuoteMessageByID(quote_mid):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT * FROM messages WHERE cid = %s AND mid = %s;"
-            cur.execute(sql, (quote_mid, cid))
+            sql = "SELECT * FROM messages WHERE mid = %s;"
+            cur.execute(sql, (quote_mid))
             quote_message = cur.fetchone()
             return quote_message
         except Exception as e:

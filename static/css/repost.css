@@ -1,12 +1,13 @@
 .modal{
-    display: none;
+    display: block;
     justify-content: center;
     align-items: center ;
     width: 70%;
-    background: #EFEFD5;
+    background: #efefd500; /*一旦無色*/
     opacity: 0.6;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     border-radius: 30px;
+    position: relative; /*追加*/
 }
 
 .items{
@@ -52,4 +53,21 @@
     to {
       opacity: 1;
     }
+  }
+
+  /*modalベースで一部追加*/
+.modal-content{
+    display: block;
+    justify-content: center;
+    align-items: center ;
+    width: 70%;
+    background: #efefd5; 
+    opacity: 0.6;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border-radius: 30px;
+    position: absolute; /*追加*/
+    top: 50%;
+    left: 50%;
+    margin: 0px 0px 0px 0px; /* 完全に中央に配置するため、上・左の margin を負の数に設定 */
+    
   }
