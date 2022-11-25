@@ -6,7 +6,7 @@ const repostBtn = document.getElementById("repost-button");
 // モーダルクローズボタン取得
 const repostPageButtonClose = document.getElementById("repost-page-close-btn");
 
-
+/*
 
 const repostMessage = () => {
   if (uid !== message.uid) {
@@ -15,7 +15,7 @@ const repostMessage = () => {
     modalOpen("repost");
   }
 };
-
+*/
 repostBtn.addEventListener("click", () => {
   modalOpen("repost");
 });

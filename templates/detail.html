@@ -60,6 +60,7 @@
               <div class="my-messages">
                 <div class="message-menu">
                     <button id="repost-button" class="repost-button">Repost</button>
+                    {% include 'modal/repost.html' %}
                     <form action="/delete_message" method="post">
                       <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                       <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
@@ -74,6 +75,7 @@
               <div class="my-messages">
                 <div class="message-menu">
                     <button id="repost-button" class="repost-button">Repost</button>
+                    {% include 'modal/repost.html' %}
                     <form action="/delete_message" method="post">
                       <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                       <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
@@ -88,6 +90,7 @@
               <div class="my-messages">
                 <div class="message-menu">
                     <button id="repost-button" class="repost-button">Repost</button>
+                    {% include 'modal/repost.html' %}
                     <form action="/delete_message" method="post">
                       <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                       <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
