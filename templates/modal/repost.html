@@ -12,20 +12,19 @@
  </head>
  <body>
   
-  <div id="repost-message-modal" class="repost-message-modal">
-  <div class="modal-header">
-    <span class="modalClose" id="repost-page-close-btn">×</span>
-  </div>
+  <div id="repost-message-modal" class="container">
     <div class="modal-content">
+      <form action="/repost" method="POST">
+        <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
+        <div>
+          <button class="modalClose" id="repost-page-close-btn">back</button>
+        </div>
+      </form>
       
       <div class="quote-message items">
-            <p>引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。</p>
+        <p class="quote-message items">{{ quote_message.message }}</p>
+        
+            
       </div>
 
 
@@ -37,27 +36,15 @@
             ></textarea>
       </div>
       <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
-      <input type="hidden" name="message_id" value="{{ message.mid }}" />
+      <input type="hidden" name="message_id" value="{{ quote_message.mid }}" />
       <input type="checkbox" name="repost_mark" value="1" />
-      <div class="items">
-        <button id="repost-btn" >
+      <div id="repost-btn" class="items">
+        <button type="submit">
           Repost
         </button>
       </div>
     </form>
     </div>
   </div>
-
-
-<!---
-  <script
-    src="{{url_for('static',filename='js/addmodal.js')}}"
-    type="text/javascript"
-  ></script>
--->
-  <script
-    src="{{url_for('static',filename='js/repost.js')}}"
-    type="text/javascript"
-  ></script>
 </body>
 </html>

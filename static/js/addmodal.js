@@ -61,7 +61,6 @@ function modalOpen() {
 }
 */
 
-
 // モーダルコンテンツ以外がクリックされた時
 addEventListener("click", outsideClose);
 function outsideClose(e) {

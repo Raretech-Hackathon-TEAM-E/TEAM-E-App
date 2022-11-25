@@ -63,24 +63,10 @@
                   <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
                 </div>
                 <div class="message-menu">
-                  <!-- <button id="repost-button" class="repost-button" name="message_id" value="{{ message.mid }}">Repost</button> -->
-                   <form action="/repost" method="POST">
-                     <div class="repost-message items">
-                           <textarea class="repost-message-area"
-                           name="re_massage" 
-                           placeholder="Repost Message" 
-                           ></textarea>
-                     </div>
-                     <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
-                     <input type="hidden" name="message_id" value="{{ message.mid }}" />
-                     <input type="checkbox" name="repost_mark" value="1" />
-                     <div class="items">
-                       <button id="repost-btn" >
-                         Repost
-                       </button>
-                     </div>
-                   </form>
-                   <!-- {% include 'modal/repost.html' %} -->
+                  <form action="/repost_open" method="post">
+                    <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  </form>  
                     <form action="/delete_message" method="post">
                       <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                       <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
@@ -94,24 +80,10 @@
                   <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
                 </div>
                 <div class="message-menu">
-                  <!-- <button id="repost-button" class="repost-button" name="message_id" value="{{ message.mid }}">Repost</button> -->
-                   <form action="/repost" method="POST">
-                     <div class="repost-message items">
-                           <textarea class="repost-message-area"
-                           name="re_massage" 
-                           placeholder="Repost Message" 
-                           ></textarea>
-                     </div>
-                     <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
-                     <input type="hidden" name="message_id" value="{{ message.mid }}" />
-                     <input type="checkbox" name="repost_mark" value="1" />
-                     <div class="items">
-                       <button id="repost-btn" >
-                         Repost
-                       </button>
-                     </div>
-                   </form>
-                   <!-- {% include 'modal/repost.html' %} -->
+                  <form action="/repost_open" method="post">
+                    <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  </form>  
                     <form action="/delete_message" method="post">
                       <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                       <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
@@ -123,24 +95,10 @@
                 <div class="box box-right"><p id="message-text">{{ message.message }}</p>
                 </div>
                 <div class="message-menu">
-                  <!-- <button id="repost-button" class="repost-button" name="message_id" value="{{ message.mid }}">Repost</button> -->
-                   <form action="/repost" method="POST">
-                     <div class="repost-message items">
-                           <textarea class="repost-message-area"
-                           name="re_massage" 
-                           placeholder="Repost Message" 
-                           ></textarea>
-                     </div>
-                     <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
-                     <input type="hidden" name="message_id" value="{{ message.mid }}" />
-                     <input type="checkbox" name="repost_mark" value="1" />
-                     <div class="items">
-                       <button id="repost-btn" >
-                         Repost
-                       </button>
-                     </div>
-                   </form>
-                   <!-- {% include 'modal/repost.html' %} -->
+                  <form action="/repost_open" method="post">
+                    <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  </form>  
                    <form action="/delete_message" method="post">
                      <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                      <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>

@@ -279,7 +279,7 @@ def repost_message():
 '''
 
 
-
+'''
 # 【リポスト】
 
 @app.route('/repost/', methods=['POST'])
@@ -302,7 +302,7 @@ def repost_message():
     messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
-    
+'''
 
 '''
 #チャンネル削除
@@ -327,6 +327,58 @@ def delete_channel(cid):
 
 
 '''
+
+
+
+# リポストhtmlへのルーティング
+
+@app.route('/repost_open', methods=['POST'])
+def repost_open():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('login')
+
+    quote_mid = request.form.get('message_id')
+    cid = request.form.get('channel_id')
+
+    quote_message = dbConnect.getQuoteMessageByID(quote_mid)
+    channel = dbConnect.getChannelById(cid)
+ #   return 'quote_message.[0]'
+
+
+    return render_template('modal/repost.html', uid=uid, quote_message=quote_message, channel=channel)
+
+
+
+
+# リポストhtml画面遷移ごのindex.htmlへのルーティング
+
+@app.route('/repost', methods=['POST'])
+def repost_message():
+    uid = session.get("uid")
+    name = session.get('name')
+    if uid is None:
+        return redirect('login')
+    elif name in session:
+        return name
+    remessage = request.form.get('re_massage')
+    quote_mid = request.form.get('message_id')
+    cid = request.form.get('channel_id')
+    mark = request.form.get('repost_mark')
+
+    if remessage:
+        dbConnect.repostMessage(uid, cid, remessage, quote_mid, mark)
+    
+    channel = dbConnect.getChannelById(cid)
+    messages = dbConnect.getMessageAll(cid)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
+    
+
+
+
+
+
 
 
 
