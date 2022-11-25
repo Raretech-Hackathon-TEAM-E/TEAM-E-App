@@ -56,6 +56,11 @@
   font-size: 1rem;
 }
 
+.channel-form-input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #EFEFD5 inset;
+}
+
+
 .modalbutton{
   border: none;
   border-radius: 5px;
