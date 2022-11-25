@@ -55,7 +55,6 @@
         <div id="message-area">
         {% if messages|length > 0 %}
           {% for message in messages %}
-            {% if message.uid == uid %}
               <div class="my-messages">
                 <div class="message-menu">
                     <button id="repost-button" class="repost-button">Repost</button>
@@ -64,20 +63,19 @@
                       <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
                     </form>
                 </div>
-              {% if message.quote_message is not none  and message.repostmark is not none%}
+            {% if message.uid == uid and message.quote_message is not none and message.repostmark is not none%}
                 <div class="box box-right" id="repostmark">
                   <p id="message-text">{{ message.message }}</p>
                   <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
                 </div>
-              {% elif message.quote_message is not none %}
+            {% elif message.uid == uid and message.quote_message is not none %}
                 <div class="box box-right ">
                   <p id="message-text">{{ message.message }}</p>
                   <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
                 </div>
-              {% else %}
+            {% elif message.uid == uid %}
                 <div class="box box-right"><p id="message-text">{{ message.message }}</p>
                 </div>
-              {% endif %}
               </div>
             {% else %}
               <div class="messages">
