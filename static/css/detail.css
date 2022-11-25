@@ -4,21 +4,13 @@
 }
 
 body {
-    float: none;
-    position: static;
-    font-family: "Sawarabi Mincho", serif;
-    font-family: "DotGothic16", sans-serif;
+    font-family: "Basic", sans-serif;
     font-size: 20px;
     box-sizing: border-box;
     background-color: #DBFF8F;
-}
-
-.main-container {
-    width: auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    overflow-x: hidden;
 }
 
 .chat-header {
@@ -27,80 +19,179 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 15%;
-    z-index: 888;
+    height: 15vh;
+    z-index: 5;
 }
 
 .chat-top {
     background-color: #FCFFF4;
     width: 100%;
     height: 10vh;
+    position: relative;
+    margin: 1em 0 2em 0;
     display: flex;
-    position: fixed;
-    margin: 1em 0 5em 0;
     flex-direction: row;
-    z-index: 999;
+    z-index: 6;
 }
 
-#channel-info {
+/* 左ヘッダー */
+.channel-info {
     position: absolute;
     bottom: 0.2em;
     left: 0.8em;
     display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.channel-info-main {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.channelroom-name {
+    font-size: larger;
+    font-weight: 550;
+}
+
+
+.chatroom-description {
+    font-size: small;
+}
+
+.editbutton{
+    border: 4px double #b3b3b3;
+    bottom: 0;
+    padding: 0.1em;
+    margin-left: 1em;
+    margin-bottom: 0.2em;
+    width: 4em;
+    height: 1.8em;
+    align-items: center;
+    border-radius: 20%;
+    font-size: 1em;
+    background-color:#e9ffb9;
+}
+
+
+/* 右ヘッダー */
+
+.header-menu{
+    position: absolute;
+    bottom: 0.1em;
+    right: 0.5em;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+
+.header-user-name {
+    right: 0.2em;
+    font-weight: 550;
+    font-size: 1.1em;
+}
+
+#menu-btn {
+    background-color: #e9ffb9;
+    border: 4px double #999999;
+    margin: 0.2em;
+    padding: 0.2em;
+}
+
+#menu-btn:hover {
+    border: 2px solid skyblue;
+  }
+  
+
+.menu-btn-text {
+    font-size: 0.8em;
+    font-weight: 550;
+}
+
+#pop-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top:0;
+    right: 0.2em;
+    width: 12em;
+    height: 4em;
+    background-color: rgb(179, 233, 255);
+    border: 4px double #999;
+    border-radius: 5px;
+    justify-content: left;
+    padding: 0 0.2em 0.2em 0.2em;
+}
+
+#menu-close {
+    display: flex;
+    position: absolute;
+    right: 0.2em;
+    font-size: 1.2em;
+    font-weight: 550;
+    color:#8b8b8b;
+}
+
+#menu-close:hover {
+    color:#303030;
+}
+
+.menu-list {
+    display: flex;
+    position: absolute;
+    top:1em;
+    left: 0.1em;
     flex-direction: column;
 }
 
-#channel-info-main {
-    display: flex;
-    flex-direction: row;
+.backbutton,
+.signout-btn {
+    background-color: rgb(179, 233, 255);
+    border: none;
+    padding: 0.2em;
+    margin-left: 1em;
+    width: 10em;
+    height: 1.7em;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
 }
 
-#chatroom-name {
-    font-size: larger;
-}
-
-#channel-edit{
-    padding-left: 1em;
-}
-
-#chatroom-description {
-    font-size: small;
-}
-
-#header-menu{
-    position: absolute;
-    bottom: 0.2em;
-    right: 0.5em;
-    flex-direction: row;
-    text-align: right;
-}
-
-#user-name{
-    right: 0.2em;
-}
-
-#signout-btn{
-    font-size: small;
-    right: 0.2em;
-}
 
 /* メッセージエリア */
 
 .chat-box {
-    min-height: 100vh;
-    width: 100%;
+    position: fixed;
+    top: 15vh;
+    bottom: 15vh;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 
-#message-area{
+.message-area{
     background-color: #FCFFF4;
     min-height: 100vh;
     width: 100%;
-    margin-top: calc(10vh + 3em);
+    position: absolute;
+    top: 0;
+    bottom: 0;
     padding-top: calc(5vh + 5px);
     padding-right: 30px;
+    /*
     padding-bottom: calc(20vh + 10px);
     padding-left: 30px;
+    */
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
@@ -109,13 +200,21 @@ body {
     gap: 0.6rem;
 }
 
-.my-messages{
+.my-messages {
     display: flex;
     flex-direction: column;
+    width: 45%;
+    right: 5vw;
 }
 
+.messages {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    left: 5vw;
+}
 
-#button {
+.message-menu {
     display: flex;
     flex-direction: row;
 }
@@ -123,17 +222,16 @@ body {
 #repost-button{
     justify-content: center;
     align-items: center;
-    margin-left: auto;
     margin-right: 10px;
     padding: 0.2em 0.2em;
     width: 6em;
+    height: 1.5em;
     color: #FCFFF4;
-    font-size: 0.5em;
+    font-size: 0.8em;
     background-color: #999;
     border-color: #999;
     border-radius: 80vh;
 }
-
 
 #delete-message-btn{
     justify-content: center;
@@ -142,11 +240,14 @@ body {
     margin-right: 30px;
     padding: 0.2em 0.2em;
     width: 6em;
-    color: #FCFFF4;
-    font-size: 0.5em;
-    background-color: #999;
-    border-color: #999;
-    border-radius: 80vh;
+    height: auto;
+    background-color: none !important;
+    border-color: none !important;
+    border-radius: 80vh! important;
+}
+
+img.deleteicon {
+    height: 1.1em;
 }
 
 .box{
@@ -209,6 +310,11 @@ body {
    padding: 0.8em;
 }
 
+#quotemessage-text {
+    padding: 0.3em;
+    font-size: smaller;
+}
+
 #repostmark{
     border: 5px double #f28fff;
 }
@@ -216,40 +322,69 @@ body {
 .typing-box-wrapper {
     position: fixed;
     bottom: 0;
-    width: calc(100vw - 70px);
+    left: 0;
+    width: 100vw;
     height: 15vh;
     background-color: #DBFF8F;
     background-size: contain;
-    border-top: 2px solid #444444;
+    border-top: 1px solid #444444;
+    z-index: 2;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: start;
-    z-index: 999;
+    justify-content: center;
   }
 
+
 .typing-box{
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     height: 80%;
-    width: 80%;
+    width: 90%;
     margin: auto;
     position: relative;
-    background-color: #FCFFF4;
+    background-color: none;
     border: none;
     border-radius: 12px;
+    position: absolute;
+    bottom: 0.5em;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .typing-box textarea {
-    background-color: transparent;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    width: 80%;
-    height: 80%;
+    background-color:  #FCFFF4;
+    width: 100%;
+    height: 100%;
+    margin: auto;
     padding: 4px 55px 4px 12px;
-    border-radius: 16px;
+    border-radius: 14px;
     resize: none;
+    border: none;
+    outline: none;
+    line-height: 20px;
+    width: 100%;
+    border-bottom: solid 1px #ADADA4;
+    padding-bottom: 1px;
+    font-size: 1rem;
   }
   
   .typing-box textarea:focus {
     cursor: pointer;
   }
+
+  #add-message-btn {
+    border: none;
+    border-radius: 5px;
+    background-color: #edf0e9;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    font-weight: 550
+  }
+  
+  #add-message-btn:hover {
+    border: 2px solid skyblue;
+  }
+  

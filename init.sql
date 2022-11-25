@@ -1,4 +1,3 @@
-
 DROP DATABASE chatapp;
 DROP USER 'testuser'@'localhost';
 
@@ -32,7 +31,7 @@ CREATE TABLE messages (
     cid integer REFERENCES channels(cid) ON DELETE CASCADE,
     message text,
     m_add_time timestamp NOT NULL default current_timestamp,
-    quote_mid bigint unsigned UNIQUE NULL,
+    quote_mid bigint unsigned NULL,
     repostmark boolean
 );
 
