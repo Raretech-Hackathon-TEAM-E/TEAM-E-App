@@ -230,6 +230,9 @@ body {
     border-radius: 80vh;
 }
 
+.repostmenu {
+    display: none;
+}
 
 .box{
     position: relative;
