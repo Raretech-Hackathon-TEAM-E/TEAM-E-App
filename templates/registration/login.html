@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Eteam.app</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Basic&display=swap">
+</head>
+
+<body>
+  <div class="container">
+    <div class="item"></div>{#空の子要素#}
+    <div class="item"></div>{#空の子要素#}
+    <div class="item img"><img src="{{ url_for('static',filename='img/toplogo.png') }}" /></div>
+    {#pythonのルーティングと一致させる#}
+    <form class="item" action="/login" , method="post">
+      {#input type は一行の入力欄を作成する際のきまり#}
+      {#type=ユーザに入力して欲しいデータ#}
+      {#placeholder=ユーザーはそのフォームにどんな内容を記入すれば良いのかがわかりやすくなる#}
+      {#name=Pythonに認識してもらうための名前#}
+      <div class="item box"><input type="email"
+          style="border:none;background-color:#DBFF8F;font-size: 5vh;font-family: Basic;" placeholder="E Mail"
+          name="email"
+          class="input-form">
+      </div>
+      <p class="item"></p>
+      <div class="item box"><input type="password"
+          style="border:none;background-color:#DBFF8F;;font-size: 5vh;font-family: Basic;" placeholder="Password"
+          name="password"
+          class="input-form">
+      </div>
+      <p class="item"></p>
+      <div class="item btn"><input type="image" src="{{url_for('static',filename='img/loginbutton.png') }}"></div>
+    </form>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {#アカウント登録画面へのリンク#}
+    <div class="item"><a class="item" href="{{ url_for('signup')}}">Sign up here.</a></div>
+  </div>
+</body>
+
+</html>

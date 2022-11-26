@@ -1,0 +1,17 @@
+* {
+  font-family: Basic;
+}
+
+body {
+    background-color: #C2C2C2;
+  }
+   
+.container {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 8vh;
+  }
+

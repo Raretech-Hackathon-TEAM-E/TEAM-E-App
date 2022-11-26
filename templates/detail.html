@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>chatroom</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../static/css/detail.css"
+    />
+  </head>
+
+<body>
+      <div class="chat-header">
+      <div class="chat-top">
+        <div class="channel-info">
+          <div class="channel-info-main">
+          <p class="channelroom-name">{{ channel.channel_name }}</p>
+          {% if channel.abstract is not none %}
+          <p class="chatroom-description">{{ channel.abstract }}</p>
+          {% endif %}
+          </div>
+          {% if uid == channel.uid %}
+            <button id='channel-update' class="editbutton">Edit</button>
+            {% include 'modal/update-channel.html' %}
+          {% endif %}
+        </div>
+        <div class="header-menu">
+          <p class="header-user-name">
+            I am {{ name }}!!
+          </p>
+        <div id="menu-btn">
+          <span class="menu-btn-text">MENU</span>
+        </div>
+        <div id="pop-menu">
+            <p id="menu-close">&times</p>
+            <p>
+            <div class="menu-list">
+              <form action="/" class="back">
+              <button class="backbutton">TOP PAGE</button>
+              </form>
+            </p>
+            <a href="{{ url_for('logout') }}">
+              <button class="signout-btn">Sign out</button>
+            </a>
+          </div> 
+        </div>
+        </div>
+      </div>
+      </div>    
+
+
+      <div class="chat-box">
+        <div class="message-area">
+        {% if messages|length > 0 %}
+          {% for message in messages %}
+            {% if message.uid == uid %}
+              {% if message.quote_message is not none  and message.repostmark is not none%}
+              <div class="my-messages">
+                <p class="m-time">{{ message.m_time }}</p>  
+              <div class="box box-right" id="repostmark">
+                <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span>
+                </p>
+                  <p id="message-text">{{ message.message }}</p>
+              </div>
+              <div class="message-menu">
+                  <form action="/delete_message" method="post">
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                    <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
+                  </form>
+                  <form action="/repost_open" method="post">
+                    <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  </form>  
+              </div>
+              </div>
+              {% elif message.quote_message is not none %}
+              <div class="my-messages">
+                <p class="m-time">{{ message.m_time }}</p>  
+                <div class="box box-right ">
+                  <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+                  <p id="message-text">{{ message.message }}</p>
+                </div>
+                <div class="message-menu">
+                  <form action="/delete_message" method="post">
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                    <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
+                  </form>
+                  <form action="/repost_open" method="post">
+                    <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  </form>  
+              </div>
+              </div>
+              {% else %}
+              <div class="my-messages">
+                <p class="m-time">{{ message.m_time }}</p>  
+                <div class="box box-right"><p id="message-text">{{ message.message }}</p>
+                </div>
+                <div class="message-menu">
+                  <form action="/delete_message" method="post">
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                    <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
+                  </form>
+                  <form action="/repost_open" method="post">
+                    <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  </form>  
+              </div>
+              </div>
+              {% endif %}
+            {% else %}
+              {% if message.quote_message is not none and message.repostmark is not none%}
+             <div class="messages">
+            <div class="message-menu">
+              <p class="user-name">{{ message.user_name }}</p>
+              <p class="m-time">{{ message.m_time }}</p>    
+            </div>
+            <div class="box box-left" id="repostmark">
+              <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+              <p id="message-text">{{ message.message }}</p>
+            </div>
+              </div>
+             {% elif message.quote_message is not none %}
+              <div class="messages">
+           <div class="message-menu">               
+            <p class="user-name">{{ message.user_name }}</p>  
+            <p class="m-time">{{ message.m_time }}</p>  
+           </div>
+            <div class="box box-left ">
+              <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+              <p id="message-text">{{ message.message }}</p>
+            </div>
+              </div>
+              {% else %}
+              <div class="messages">
+          <div class="message-menu">
+            <p class="user-name">{{ message.user_name }}</p>
+            <p class="m-time">{{ message.m_time }}</p>
+          </div>
+            <div class="box box-left ">
+           <p id="message-text">{{ message.message }}</p>
+            </div>
+              </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <p class="no-message">No Message...</p>
+        {% endif %}
+        </div>
+
+        <div class="typing-box-wrapper">
+          <!--入力フォーム-->
+          <form class="typing-box" action="/message" method="POST">
+            <textarea name="message" id="message" autofocus></textarea>
+            <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
+            <button type="submit" id="add-message-btn">Send
+            </button>
+          </form>
+        </div>
+      </div>
+
+    <script type="text/javascript">
+      const channel = JSON.parse('{{ channel|tojson }}');
+      const uid = JSON.parse('{{ uid|tojson }}');
+    </script>
+    <script
+      src="{{url_for('static',filename='js/scroll-message.js')}}"
+      type="text/javascript"
+    ></script>
+    <script
+      src="{{url_for('static',filename='js/update-channel.js')}}"
+      type="text/javascript"
+    ></script>
+    <script
+      src="{{url_for('static',filename='js/addmodal.js')}}"
+      type="text/javascript"
+    ></script>
+    <script
+    src="{{url_for('static',filename='js/header-menu.js')}}"
+    type="text/javascript"
+  ></script>
+
+</body>
+</html>
