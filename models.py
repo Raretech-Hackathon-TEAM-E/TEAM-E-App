@@ -50,6 +50,21 @@ class dbConnect:
             cur.close()
 
 
+    def getUser(name):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM users WHERE user_name=%s;"
+            cur.execute(sql, (name))
+            user = cur.fetchone()
+            return user
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()   
+
+
 # 全チャンネル名の取得
 
     def getChannelAll():
