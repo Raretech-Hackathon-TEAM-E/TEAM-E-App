@@ -82,29 +82,6 @@ class dbConnect:
             cur.close()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #チャンネルの削除関数
     def deleteChannel(cid):
         try: 
@@ -153,8 +130,6 @@ class dbConnect:
             cur.close()
 
 
-
-
 # チャンネルIDの取得
 
     def getChannelById(cid):
@@ -190,64 +165,13 @@ class dbConnect:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#　ルーティング用に試験的に記述
 # メッセージ取得★★
 
     def getMessageAll(cid):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m1.mid,u.uid, user_name, m1.message, m1.m_add_time as m_time, m1.quote_mid, m1.repostmark, m2.message as quote_message FROM messages AS m1 INNER JOIN users AS u ON m1.uid = u.uid LEFT JOIN messages AS m2  ON m1.quote_mid = m2.mid WHERE m1.cid = %s;"
+            sql = "SELECT m1.mid,u.uid, user_name, m1.message, m1.m_add_time as m_time, m1.quote_mid, m1.repostmark, m2.message as quote_message FROM messages as m1 INNER JOIN users as u ON m1.uid = u.uid LEFT JOIN messages as m2  ON m1.quote_mid = m2.mid WHERE m1.cid = %s;"
             cur.execute(sql, (cid))
             messages = cur.fetchall()
             return messages
@@ -292,8 +216,6 @@ class dbConnect:
             cur.close()
 
 
-
-
 # メッセージ削除
 
     def deleteMessage(message_id):
@@ -310,13 +232,6 @@ class dbConnect:
             cur.close()
 
 
-
-
-
-
-
-
-#　ルーティング用に試験的に記述
 # quoteメッセージ取得
 
     def getQuoteMessageByID(quote_mid):

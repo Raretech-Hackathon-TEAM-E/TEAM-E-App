@@ -143,30 +143,6 @@ def delete_message():
     messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
-'''元のリポストルーティング。試験用は下に記述
-# 【リポスト】
-
-@app.route('/repost', methods=['POST'])
-def repost_message():
-    uid = session.get("uid")
-    if uid is None:
-        return redirect('login')
-    remessage = request.form.get('re_message')
-    quote_mid = request.form.get('message_id')
-    cid = request.form.get('channel_id')
-    mark = request.form.get('repost_mark')
-
-    if remessage:
-        dbConnect.repostMessage(uid, cid, remessage, quote_mid, mark)
-    
-    channel = dbConnect.getChannelById(cid)
-    messages = dbConnect.getMessageAll(cid)
-
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-'''
-"""
-cidの変数名を揃える
-"""
 
 
 #"/"へのアクセス
@@ -202,7 +178,6 @@ def add_channel():
         return 'error'
 
 
-
 #チャンネル削除
 @app.route('/delete/<cid>')
 def delete_channel(cid):
@@ -225,6 +200,12 @@ def delete_channel(cid):
 
 
 #チャンネル編集
+
+
+@app.route('/duplicatederror')
+def duplicated():
+    return render_template('error/error.html')
+
 @app.route('/update_channel', methods=['POST'])
 def update_channel():
     uid = session.get("uid")
@@ -234,100 +215,21 @@ def update_channel():
     elif name in session:
         return name
 
-    cid = request.form.get('cid')
-    channel_name = request.form.get('channel-title')
-    channel_description = request.form.get('channel-description')
+    else:
+        cid = request.form.get('cid')
+        channel_name = request.form.get('channel-title')
+        channel_description = request.form.get('channel-description')
+        DBcname = dbConnect.getChannelByName(channel_name)
 
-    dbConnect.updateChannel(uid, channel_name, channel_description, cid)
-    channel = dbConnect.getChannelByID(cid)
-    messages = dbConnect.getMessageAll(cid)
+        if DBcname != None:
+            return redirect('/duplicatederror')
+
+        else:
+            dbConnect.updateChannel(uid, channel_name, channel_description, cid)
+            channel = dbConnect.getChannelByID(cid)
+            messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
-
-
-
-
-
-
-
-
-
-'''
-# 【リポスト】試験用に記述
-
-@app.route('/repost', methods=['POST'])
-def repost_message():
-    uid = session.get("uid")
-    if uid is None:
-        return redirect('login')
-    remessage = request.form.get('re_message')
-#    quote_mid = request.form.get('message_id')
-    cid = request.form.get('channel_id')
-#    mark = request.form.get('repost_mark')  
-
-    repost_mark = request.form.get('repost_mark')
-#    return repost_mark
-    if repost_mark == "1":
-        return 'OK'
-    else:
-        return 'No'
-
-#    channel = dbConnect.getChannelById(cid)
-#   messages = dbConnect.getMessageAll(cid)
-
-#    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-'''
-
-
-'''
-# 【リポスト】
-
-@app.route('/repost/', methods=['POST'])
-def repost_message():
-    uid = session.get("uid")
-    name = session.get('name')
-    if uid is None:
-        return redirect('login')
-    elif name in session:
-        return name
-    remessage = request.form.get('re_massage')
-    quote_mid = request.form.get('message_id')
-    cid = request.form.get('channel_id')
-    mark = request.form.get('repost_mark')
-
-    if remessage:
-        dbConnect.repostMessage(uid, cid, remessage, quote_mid, mark)
-    
-    channel = dbConnect.getChannelById(cid)
-    messages = dbConnect.getMessageAll(cid)
-
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
-'''
-
-'''
-#チャンネル削除
-@app.route('/delete/<cid>')
-def delete_channel(cid):
-    uid = session.get("uid")
-    name = session.get('name')
-    if uid is None:
-        return redirect('/login')
-    elif name in session:
-        return name
-    cid = cid
-    channel = dbConnect.getChannelById(cid)
-
-    if channel["uid"] != uid:
-        flash('チャンネルは作成者のみ削除可能です')
-        return redirect ('/')
-    else:
-        dbConnect.deleteChannel(cid)
-        channels = dbConnect.getChannelAll()
-        return render_template('index.html', channels=channels, uid=uid, name=name)
-
-
-'''
-
 
 
 # リポストhtmlへのルーティング
@@ -347,8 +249,6 @@ def repost_open():
 
 
     return render_template('modal/repost.html', uid=uid, quote_message=quote_message, channel=channel)
-
-
 
 
 # リポストhtml画面遷移ごのindex.htmlへのルーティング
@@ -376,14 +276,6 @@ def repost_message():
     
 
 
-
-
-
-
-
-
-
-
 # ログアウト
 @app.route('/logout')
 def logout():
@@ -392,8 +284,16 @@ def logout():
 
 
 
+# 404エラー
+@app.errorhandler(404)
+def show_error404(error):
+    return render_template('error/404.html')
 
 
+#500エラー
+@app.errorhandler(500)
+def show_error500(error):
+    return render_template('error/500.html')
 
 
 if __name__ == '__main__':
