@@ -37,22 +37,6 @@ function modalClose(mode) {
   }
 }
 
-/*
-// モーダルを開く
-// <button id="add-channel-btn">チャンネル追加</button>ボタンがクリックされた時
-addChannelBtn.addEventListener("click", modalOpen);
-function modalOpen() {
-  addChannelModal.style.display = "block";
-}
-
-
-deleteChannelBtn.addEventListener("click", modalOpen);
-function modalOpen() {
-  deleteChannelModal.style.display = "block";
-}
-*/
-
-
 // モーダルコンテンツ以外がクリックされた時
 addEventListener("click", outsideClose);
 function outsideClose(e) {
@@ -60,17 +44,3 @@ function outsideClose(e) {
     repostModal.style.display = "none";
   }
 }
-
-/*
-function repostsubmit() {
-    if(uid !== item.uid) {
-        return
-    } else if (uid === item.uid) {
-      const repostButtonLink = document.getElementById("repost-link");
-      const repostButton = document.getElementById("repost-btn");
-      const url = `/repost/${item.mid}`;
-      repostButtonLink.setAttribute("href", url);
-      repostButton.setAttribute("type", submit);
-  };
-}
-*/

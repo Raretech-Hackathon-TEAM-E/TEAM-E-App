@@ -3,17 +3,6 @@
     padding: 0;
 }
 
-/*
-body {
-    font-family: "Basic", sans-serif;
-    font-size: 20px;
-    box-sizing: border-box;
-    background-color: #DBFF8F;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-*/
 
 body {
     float: none;
@@ -193,7 +182,6 @@ body {
     padding-top: calc(5vh + 5px);
     padding-right: 30px;
     padding-bottom: calc(15vh + 10px);
-     /* ↑下部テキストエリア（.typing-box-wrapper）以上の高さを取る　*/
     padding-left: 30px;
     display: flex;
     flex-direction: column;

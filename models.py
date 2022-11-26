@@ -82,29 +82,6 @@ class dbConnect:
             cur.close()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #チャンネルの削除関数
     def deleteChannel(cid):
         try: 
@@ -153,8 +130,6 @@ class dbConnect:
             cur.close()
 
 
-
-
 # チャンネルIDの取得
 
     def getChannelById(cid):
@@ -190,57 +165,6 @@ class dbConnect:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#　ルーティング用に試験的に記述
 # メッセージ取得★★
 
     def getMessageAll(cid):
@@ -292,8 +216,6 @@ class dbConnect:
             cur.close()
 
 
-
-
 # メッセージ削除
 
     def deleteMessage(message_id):
@@ -310,13 +232,6 @@ class dbConnect:
             cur.close()
 
 
-
-
-
-
-
-
-#　ルーティング用に試験的に記述
 # quoteメッセージ取得
 
     def getQuoteMessageByID(quote_mid):

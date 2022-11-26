@@ -143,30 +143,6 @@ def delete_message():
     messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
-'''元のリポストルーティング。試験用は下に記述
-# 【リポスト】
-
-@app.route('/repost', methods=['POST'])
-def repost_message():
-    uid = session.get("uid")
-    if uid is None:
-        return redirect('login')
-    remessage = request.form.get('re_message')
-    quote_mid = request.form.get('message_id')
-    cid = request.form.get('channel_id')
-    mark = request.form.get('repost_mark')
-
-    if remessage:
-        dbConnect.repostMessage(uid, cid, remessage, quote_mid, mark)
-    
-    channel = dbConnect.getChannelById(cid)
-    messages = dbConnect.getMessageAll(cid)
-
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-'''
-"""
-cidの変数名を揃える
-"""
 
 
 #"/"へのアクセス
@@ -200,7 +176,6 @@ def add_channel():
     else:
         error = '既に同じチャンネルが存在しています' 
         return 'error'
-
 
 
 #チャンネル削除
@@ -245,91 +220,6 @@ def update_channel():
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
 
 
-
-
-
-
-
-
-
-'''
-# 【リポスト】試験用に記述
-
-@app.route('/repost', methods=['POST'])
-def repost_message():
-    uid = session.get("uid")
-    if uid is None:
-        return redirect('login')
-    remessage = request.form.get('re_message')
-#    quote_mid = request.form.get('message_id')
-    cid = request.form.get('channel_id')
-#    mark = request.form.get('repost_mark')  
-
-    repost_mark = request.form.get('repost_mark')
-#    return repost_mark
-    if repost_mark == "1":
-        return 'OK'
-    else:
-        return 'No'
-
-#    channel = dbConnect.getChannelById(cid)
-#   messages = dbConnect.getMessageAll(cid)
-
-#    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-'''
-
-
-'''
-# 【リポスト】
-
-@app.route('/repost/', methods=['POST'])
-def repost_message():
-    uid = session.get("uid")
-    name = session.get('name')
-    if uid is None:
-        return redirect('login')
-    elif name in session:
-        return name
-    remessage = request.form.get('re_massage')
-    quote_mid = request.form.get('message_id')
-    cid = request.form.get('channel_id')
-    mark = request.form.get('repost_mark')
-
-    if remessage:
-        dbConnect.repostMessage(uid, cid, remessage, quote_mid, mark)
-    
-    channel = dbConnect.getChannelById(cid)
-    messages = dbConnect.getMessageAll(cid)
-
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
-'''
-
-'''
-#チャンネル削除
-@app.route('/delete/<cid>')
-def delete_channel(cid):
-    uid = session.get("uid")
-    name = session.get('name')
-    if uid is None:
-        return redirect('/login')
-    elif name in session:
-        return name
-    cid = cid
-    channel = dbConnect.getChannelById(cid)
-
-    if channel["uid"] != uid:
-        flash('チャンネルは作成者のみ削除可能です')
-        return redirect ('/')
-    else:
-        dbConnect.deleteChannel(cid)
-        channels = dbConnect.getChannelAll()
-        return render_template('index.html', channels=channels, uid=uid, name=name)
-
-
-'''
-
-
-
 # リポストhtmlへのルーティング
 
 @app.route('/repost_open', methods=['POST'])
@@ -347,8 +237,6 @@ def repost_open():
 
 
     return render_template('modal/repost.html', uid=uid, quote_message=quote_message, channel=channel)
-
-
 
 
 # リポストhtml画面遷移ごのindex.htmlへのルーティング
@@ -376,24 +264,11 @@ def repost_message():
     
 
 
-
-
-
-
-
-
-
-
 # ログアウト
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/login')
-
-
-
-
-
 
 
 if __name__ == '__main__':
