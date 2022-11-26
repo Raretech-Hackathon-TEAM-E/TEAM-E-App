@@ -63,79 +63,82 @@
                 <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span>
                 </p>
                   <p id="message-text">{{ message.message }}</p>
-
               </div>
               <div class="message-menu">
-                <form action="/repost_open" method="post">
-                  <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
-                  <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                </form>  
                   <form action="/delete_message" method="post">
                     <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
                     <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
                   </form>
+                  <form action="/repost_open" method="post">
+                    <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  </form>  
               </div>
               </div>
               {% elif message.quote_message is not none %}
               <div class="my-messages">
                 <p class="m-time">{{ message.m_time }}</p>  
                 <div class="box box-right ">
-                  <p id="message-text">{{ message.message }}</p>
-                  <div class="message-menu">
-                    <form action="/repost_open" method="post">
-                      <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
-                      <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                    </form>  
-                      <form action="/delete_message" method="post">
-                        <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                        <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
-                      </form>
-                  </div>
                   <p class="box box-right box-right-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
-
+                  <p id="message-text">{{ message.message }}</p>
                 </div>
-
+                <div class="message-menu">
+                  <form action="/delete_message" method="post">
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                    <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
+                  </form>
+                  <form action="/repost_open" method="post">
+                    <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  </form>  
+              </div>
               </div>
               {% else %}
               <div class="my-messages">
                 <p class="m-time">{{ message.m_time }}</p>  
                 <div class="box box-right"><p id="message-text">{{ message.message }}</p>
-                  <div class="message-menu">
-                    <form action="/repost_open" method="post">
-                      <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
-                      <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                    </form>  
-                     <form action="/delete_message" method="post">
-                       <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
-                       <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
-                     </form>
-                 </div>
                 </div>
+                <div class="message-menu">
+                  <form action="/delete_message" method="post">
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                    <button class="delete-message-btn" name="message_id" value="{{ message.mid }}">Delete</button>
+                  </form>
+                  <form action="/repost_open" method="post">
+                    <button id="repost-page-open-btn" class="repost-btn" name="message_id" value="{{ message.mid }}">Repost</button>
+                    <input type="hidden" value="{{ channel.cid }}" name="channel_id" />
+                  </form>  
+              </div>
               </div>
               {% endif %}
             {% else %}
               {% if message.quote_message is not none and message.repostmark is not none%}
-              <div class="messages">
+             <div class="messages">
+            <div class="message-menu">
               <p class="user-name">{{ message.user_name }}</p>
               <p class="m-time">{{ message.m_time }}</p>    
+            </div>
             <div class="box box-left" id="repostmark">
-              <p id="message-text">{{ message.message }}</p>
               <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+              <p id="message-text">{{ message.message }}</p>
             </div>
               </div>
              {% elif message.quote_message is not none %}
               <div class="messages">
+           <div class="message-menu">               
             <p class="user-name">{{ message.user_name }}</p>  
             <p class="m-time">{{ message.m_time }}</p>  
+           </div>
             <div class="box box-left ">
-              <p id="message-text">{{ message.message }}</p>
               <p class="box box-left box-left-repost"><span id="quotemessage-text">{{ message.quote_message }}</span></p>
+              <p id="message-text">{{ message.message }}</p>
             </div>
               </div>
               {% else %}
               <div class="messages">
+          <div class="message-menu">
             <p class="user-name">{{ message.user_name }}</p>
-            <p class="m-time">{{ message.m_time }}</p>  
+            <p class="m-time">{{ message.m_time }}</p>
+          </div>
             <div class="box box-left ">
            <p id="message-text">{{ message.message }}</p>
             </div>
