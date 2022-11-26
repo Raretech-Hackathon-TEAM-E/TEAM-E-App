@@ -154,7 +154,10 @@ body {
   }
   
   button:hover {
-    border: 2px solid skyblue;
+    border: 3px double skyblue;
+    background-color: rgb(146, 146, 146);
+    color: #fafff0;
+    transition: .1s;
   }
 
 .backbutton {
