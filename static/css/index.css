@@ -12,6 +12,11 @@ body {
     background-color: #DBFF8F;
 }
 
+a {
+    text-decoration: none;
+}
+
+ 
 .main-container {
     width: auto;
     display: flex;
@@ -46,6 +51,7 @@ body {
 }
 
 #signout-btn{
+    text-decoration: none;
     font-size: small;
     right: 0.2em;
     color: rgb(135, 135, 135);
