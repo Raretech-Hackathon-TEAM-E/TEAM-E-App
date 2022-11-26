@@ -10,6 +10,12 @@ const updateChannel = () => {
   }
 };
 
+function modalOpen(mode) {
+  if (mode === "update") {
+    updateChannelModal.style.display = "block";
+  }
+}
+
 
 updateButton.addEventListener("click", updateChannel);
 
@@ -18,3 +24,16 @@ updateButton.addEventListener("click", updateChannel);
 updatePageButtonClose.addEventListener("click", () => {
   modalClose("update");
 });
+
+function modalClose(mode) {
+  if (mode === "update") {
+    updateChannelModal.style.display = "none"; 
+  }
+}
+
+addEventListener("click", outsideClose);
+function outsideClose(e) {
+  if (e.target == updateChannelModal) {
+    updateChannelModal.style.display = "none";
+  }
+}

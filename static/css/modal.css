@@ -56,11 +56,17 @@
   font-size: 1rem;
 }
 
+.channel-form-input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #EFEFD5 inset;
+}
+
+
 .modalbutton{
   border: none;
   border-radius: 5px;
-  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-  background-color: #fafafa;
+  /*
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  background-color: #fafff0;
   width: 150px;
   height: 30px;
   font-family: 'Basic', sans-serif;

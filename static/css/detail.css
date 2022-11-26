@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+/*
 body {
     font-family: "Basic", sans-serif;
     font-size: 20px;
@@ -11,6 +12,17 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+*/
+
+body {
+    float: none;
+    position: static;
+    font-family: "Basic", sans-serif;
+    font-size: 20px;
+    box-sizing: border-box;
+    background-color: #DBFF8F;
+    overflow-x: hidden;
 }
 
 .chat-header {
@@ -163,126 +175,117 @@ body {
 }
 
 
+
 /* メッセージエリア */
 
 .chat-box {
-    position: fixed;
-    top: 15vh;
-    bottom: 15vh;
-    left: 0;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
     overflow-x: hidden;
-    box-sizing: border-box;
 }
 
 
 .message-area{
     background-color: #FCFFF4;
-    min-height: 100vh;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    min-height: 55vh;
+    margin-top: calc(10vh + 3em);
+    margin-right: 0;
     padding-top: calc(5vh + 5px);
     padding-right: 30px;
-    /*
-    padding-bottom: calc(20vh + 10px);
+    padding-bottom: calc(15vh + 10px);
+     /* ↑下部テキストエリア（.typing-box-wrapper）以上の高さを取る　*/
     padding-left: 30px;
-    */
-    overflow-y: scroll;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     gap: 0.6rem;
+    overflow-x: hidden;
+}
+
+.my-messages,
+.messages{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin-bottom: 2em;
 }
 
 .my-messages {
-    display: flex;
-    flex-direction: column;
-    width: 45%;
-    right: 5vw;
-}
-
-.messages {
-    display: flex;
-    flex-direction: column;
-    width: 45%;
-    left: 5vw;
+    margin: 0 0 2em auto;
 }
 
 .message-menu {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0;
 }
 
-#repost-button{
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-    padding: 0.2em 0.2em;
+.repost-btn,
+.delete-message-btn {
+    vertical-align: top;
+    margin: 0.1em 0.7em 0 0.2em;
+    padding: 0.2em;
     width: 6em;
-    height: 1.5em;
-    color: #FCFFF4;
-    font-size: 0.8em;
-    background-color: #999;
-    border-color: #999;
-    border-radius: 80vh;
+    background-color: #e9ffb9;
+    font-size: 0.5em;
+    color: rgb(49, 49, 49);
+    border: solid 1.5px #8b8b8b;
+    border-radius: 3px;
+    font-weight: 600;
 }
 
-#delete-message-btn{
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 30px;
-    padding: 0.2em 0.2em;
-    width: 6em;
-    height: auto;
-    background-color: none !important;
-    border-color: none !important;
-    border-radius: 80vh! important;
+.delete-message-btn {
+    width: 5em;
 }
 
-img.deleteicon {
-    height: 1.1em;
+.repost-btn:hover,
+.delete-message-btn:hover {
+    border: 2px solid skyblue;
 }
+
 
 .box{
     position: relative;
-    width: 40%;
-    border-radius: 6px;
-    font-weight: bold;
+    border-radius: 5px;
+    font-weight: 520;
     font-size: 14px;
     line-height: 1.5;
     letter-spacing: 0.1em;
     overflow-wrap: break-word;
     flex-direction: column;
+    margin: 0.1em 0.1em 0.1em 0;
 }
 
 .box-right{
     background-color: #444444;
     color: #FCFFF4;
-    margin-left: auto;
-    margin-right: 10px;
     border: 2px solid #333;
   }
 
 .box-left{
     background-color: #FCFFF4;
-    color: #444444;
+    color: #2c2c2c;
     border: 2px solid #333;
   }
 
-.message{
-    padding: 0.7em 0 0.4em 1em;
+
+.user-name,
+.m-time{
+    font-size: 9px;
+    margin: 0 0.7em 0 0.7em;
 }
 
+.user-name {
+    font-size: 11px;
+    font-weight: 600;
+}
 
-.user-name{
-    font-size: 8px;
+.user-name::before {
+    content: '▶ ';
+    font-weight: 400;
+    color: #8b8b8b;
 }
 
 .box-right-repost{
@@ -290,34 +293,54 @@ img.deleteicon {
     color: rgba(252, 255, 244, 0.6);
     width: auto;
     margin: 0;
+    padding: 0.5em;
     z-index: 2;
     border: none;
-    border-radius: 0 0 6px 6px ;
+    border-radius: 3px 3px 0 0;
 }
 
 .box-left-repost{
-    background-color: #999999;
+    background-color: #3d3d3d;
     opacity: 60%;
-    color: rgba(244, 244, 244, 0.6);
+    color: rgba(244, 244, 244, 0.709);
     width: auto;
     margin: 0;
+    padding: 0.5em;
     z-index: 2;
     border: none;
-    border-radius: 0 0 6px 6px ;
+    border-radius: 3px 3px 0 0;
 }
 
 #message-text{
-   padding: 0.8em;
+   margin: 0.8em;
 }
 
 #quotemessage-text {
-    padding: 0.3em;
+    margin: 0.5em;
     font-size: smaller;
 }
 
-#repostmark{
-    border: 5px double #f28fff;
+#quotemessage-text::before{
+    content: '>>';
+    font-weight: 600;
+    color: #DBFF8F;
+    margin-right: 1em;
 }
+
+#repostmark{
+    border: 5px double rgb(255, 0, 144);
+    border-radius: 9px;
+}
+
+.no-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 550;
+    font-size: larger;
+    color: #999;
+}
+
 
 .typing-box-wrapper {
     position: fixed;
@@ -327,7 +350,7 @@ img.deleteicon {
     height: 15vh;
     background-color: #DBFF8F;
     background-size: contain;
-    border-top: 1px solid #444444;
+    border-top: 1.5px solid #444444;
     z-index: 2;
     display: flex;
     flex-direction: row;
@@ -357,7 +380,7 @@ img.deleteicon {
     width: 100%;
     height: 100%;
     margin: auto;
-    padding: 4px 55px 4px 12px;
+    padding: 1px 55px 7px 12px;
     border-radius: 14px;
     resize: none;
     border: none;
@@ -370,13 +393,15 @@ img.deleteicon {
   }
   
   .typing-box textarea:focus {
+    border:2px solid rgb(146, 146, 146);
+    outline:0;
     cursor: pointer;
   }
 
   #add-message-btn {
     border: none;
     border-radius: 5px;
-    background-color: #edf0e9;
+    background-color: #fafff0;
     width: 100px;
     height: 30px;
     margin-bottom: 1em;
@@ -385,6 +410,8 @@ img.deleteicon {
   }
   
   #add-message-btn:hover {
-    border: 2px solid skyblue;
+    border: 3px double skyblue;
+    background-color: rgb(146, 146, 146);
+    color: #fafff0;
+    transition: .1s;
   }
-  

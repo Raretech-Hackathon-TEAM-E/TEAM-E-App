@@ -10,80 +10,44 @@
             href="../../static/css/repost.css"
         />
  </head>
- <body>
-  <div class="modal-header">
-    <span class="modalClose" id="repost-page-close-btn">×</span>
-  </div>
-  <div id="repost-message-modal" class="container">
-    <div class="modal-content">
-      
-      <div class="quote-message items">
-            <p>引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。引用メッセージがここに入る。引用メッセージがここに入る。<br>
-            引用メッセージがここに入る。</p>
-      </div>
+<body>
+<div class="container">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!--      <div class="repost-message items">　一旦コメントアウトしてます。ルーティング検討後は後述のコードを削除します。
-            <textarea class="repost-message-area"
-            name="repost-massage" 
-            placeholder="Repost Message" 
-            ></textarea>
-      </div>
-      <div id="repost-btn" class="items">
-        <button type="submit">
-            Repost
-        </button>
-      </div>
-    </div>
-  </div>
- </body>
-</html>
--->
-
-
-<!--ルーティング用に記述-->
-
+   <div class="repost-area">
+    <div class="backbutton">
     <form action="/repost" method="POST">
-      <div class="repost-message items">
+      <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
+        <button class="button">back </button>
+    </form>
+    </div>
+     <div class="quote-message">
+        <p>{{ quote_message.message }}</p>
+     </div>
+
+    <form action="/repost" method="POST" class="form">
+      <div class="repost-message-area">
             <textarea class="repost-message-area"
             name="re_massage" 
             placeholder="Repost Message" 
             ></textarea>
       </div>
-      <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
-      <input type="hidden" name="message_id" value="{{ message.mid }}" />
-      <input type="checkbox" name="repost_mark" value="1" />
-      <div id="repost-btn" class="items">
-        <button type="submit">
+
+      <div class="important">
+        <p>Important ? :</p>
+        <input type="hidden" name="channel_id" value="{{ channel.cid }}" />
+        <input type="hidden" name="message_id" value="{{ quote_message.mid }}" />
+        <input type="checkbox" name="repost_mark" value="1" id="important" />
+        <label for="important"></label>
+      </div>
+      <div class="repost-btn">
+        <button type="submit" class="button">
           Repost
         </button>
       </div>
     </form>
-    </div>
-  </div>
+     </div>
+
+   </div>
+</div>
 </body>
 </html>
