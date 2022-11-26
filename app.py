@@ -200,6 +200,12 @@ def delete_channel(cid):
 
 
 #チャンネル編集
+
+
+@app.route('/duplicatederror')
+def duplicated():
+    return render_template('error/error.html')
+
 @app.route('/update_channel', methods=['POST'])
 def update_channel():
     uid = session.get("uid")
@@ -209,13 +215,19 @@ def update_channel():
     elif name in session:
         return name
 
-    cid = request.form.get('cid')
-    channel_name = request.form.get('channel-title')
-    channel_description = request.form.get('channel-description')
+    else:
+        cid = request.form.get('cid')
+        channel_name = request.form.get('channel-title')
+        channel_description = request.form.get('channel-description')
+        DBcname = dbConnect.getChannelByName(channel_name)
 
-    dbConnect.updateChannel(uid, channel_name, channel_description, cid)
-    channel = dbConnect.getChannelByID(cid)
-    messages = dbConnect.getMessageAll(cid)
+        if DBcname != None:
+            return redirect('/duplicatederror')
+
+        else:
+            dbConnect.updateChannel(uid, channel_name, channel_description, cid)
+            channel = dbConnect.getChannelByID(cid)
+            messages = dbConnect.getMessageAll(cid)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, name=name)
 
