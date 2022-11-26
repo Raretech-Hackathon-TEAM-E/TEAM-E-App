@@ -240,11 +240,16 @@ body {
     width: 5em;
 }
 
+.repost-btn:hover,
+.delete-message-btn:hover {
+    border: 2px solid skyblue;
+}
+
 
 .box{
     position: relative;
     border-radius: 5px;
-    font-weight: 500;
+    font-weight: 520;
     font-size: 14px;
     line-height: 1.5;
     letter-spacing: 0.1em;
@@ -261,7 +266,7 @@ body {
 
 .box-left{
     background-color: #FCFFF4;
-    color: #444444;
+    color: #2c2c2c;
     border: 2px solid #333;
   }
 
@@ -345,7 +350,7 @@ body {
     height: 15vh;
     background-color: #DBFF8F;
     background-size: contain;
-    border-top: 1px solid #444444;
+    border-top: 1.5px solid #444444;
     z-index: 2;
     display: flex;
     flex-direction: row;
@@ -375,7 +380,7 @@ body {
     width: 100%;
     height: 100%;
     margin: auto;
-    padding: 4px 55px 4px 12px;
+    padding: 1px 55px 7px 12px;
     border-radius: 14px;
     resize: none;
     border: none;
@@ -388,13 +393,15 @@ body {
   }
   
   .typing-box textarea:focus {
+    border:2px solid rgb(146, 146, 146);
+    outline:0;
     cursor: pointer;
   }
 
   #add-message-btn {
     border: none;
     border-radius: 5px;
-    background-color: #edf0e9;
+    background-color: #fafff0;
     width: 100px;
     height: 30px;
     margin-bottom: 1em;
@@ -403,6 +410,8 @@ body {
   }
   
   #add-message-btn:hover {
-    border: 2px solid skyblue;
+    border: 3px double skyblue;
+    background-color: rgb(146, 146, 146);
+    color: #fafff0;
+    transition: .1s;
   }
-  
