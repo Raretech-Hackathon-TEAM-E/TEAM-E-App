@@ -35,14 +35,14 @@ class dbConnect:
 
 # ユーザーの取得
 
-    def getUser(email):
+    def getUserByMail(email):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "SELECT * FROM users WHERE email=%s;"
             cur.execute(sql, (email))
-            user = cur.fetchone()
-            return user
+            mail = cur.fetchone()
+            return mail
         except Exception as e:
             print(e + 'が発生しています')
             return None
@@ -50,7 +50,7 @@ class dbConnect:
             cur.close()
 
 
-    def getUser(name):
+    def getUserByName(name):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()

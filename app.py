@@ -42,10 +42,10 @@ def userSignup():
         uid = uuid.uuid4()
         password = hashlib.sha256(password1.encode('utf-8')).hexdigest()
         user = User(uid, name, email, password)
-        DBusermail = dbConnect.getUser(email)
-        DBusername = dbConnect.getUser(name)
+        DBusermail = dbConnect.getUserByMail(email)
+        DBusername = dbConnect.getUserByName(name)
 
-        if DBusermail != None or DBusername != None:
+        if DBusermail or DBusername != None:
             flash('既に登録されています')
 
         else:
