@@ -287,13 +287,13 @@ def logout():
 # 404エラー
 @app.errorhandler(404)
 def show_error404(error):
-    return render_template('error/404.html')
+    return render_template('error/error404.html')
 
 
 #500エラー
 @app.errorhandler(500)
 def show_error500(error):
-    return render_template('error/500.html')
+    return render_template('error/error500.html')
 
 
 if __name__ == '__main__':
