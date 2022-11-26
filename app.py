@@ -174,8 +174,8 @@ def add_channel():
         dbConnect.addChannel(uid, channel_name, channel_description)
         return redirect('/')
     else:
-        error = '既に同じチャンネルが存在しています' 
-        return 'error'
+        return redirect('/duplicatederror')
+
 
 
 #チャンネル削除
